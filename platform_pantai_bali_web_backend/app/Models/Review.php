@@ -5,8 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Beach extends Model
+class Review extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function beach()
+    {
+        return $this->belongsTo(Beach::class);
+    }
 }

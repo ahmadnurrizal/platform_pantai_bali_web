@@ -14,7 +14,11 @@ class BeachController extends Controller
      */
     public function index()
     {
-        //
+        $beach =  Beach::all();
+        return response()->json([
+            "status" => "success",
+            "data" => $beach
+        ]);
     }
 
     /**
@@ -25,7 +29,19 @@ class BeachController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'beach_name' => 'required',
+            'beach_description' => 'required',
+            'beach_location' => 'required',
+        ]);
+
+        // insert data to beach table
+        $beach = Beach::create($request->all());
+
+        return response()->json([
+            "status" => "success",
+            "data" => $beach,
+        ]);
     }
 
     /**
