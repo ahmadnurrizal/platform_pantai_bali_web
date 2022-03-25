@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeachController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -16,14 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [AuthController::class, 'register']); // register ///////////////////////////////////////
-Route::post('/login', [AuthController::class, 'login']); // login //////////////////////////////////////////////
+//  PUBLIC ROUTE
+Route::post('/register', [AuthController::class, 'register']); // register
+Route::post('/login', [AuthController::class, 'login']); // login
 
-Route::get('/users', [UserController::class, 'index']); // gell all user
-
+Route::get('/users', [UserController::class, 'index']);
 Route::get('/beach', [BeachController::class, 'index']);
-Route::post('/beach', [BeachController::class, 'store']);
+Route::get('/beach/{id}', [BeachController::class, 'show']);
+Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+//  PROTECTED ROUTE
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/beach', [BeachController::class, 'store']);
+    Route::post('/beach/{id}', [BeachController::class, 'update']);
+    Route::delete('/beach/{id}', [BeachController::class, 'destroy']);
+
+    Route::delete('/logout', [AuthController::class, 'logout']);
 });
