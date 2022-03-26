@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBeachesTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateBeachesTable extends Migration
      */
     public function up()
     {
-        Schema::create('beaches', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('beach_id')->constrained('beaches');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateBeachesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beaches');
+        Schema::dropIfExists('ratings');
     }
 }
