@@ -34,4 +34,29 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/beach/{id}', [BeachController::class, 'destroy']);
 
     Route::delete('/logout', [AuthController::class, 'logout']);
+
+    Route::post('/upload-image', function (Request $request) {
+        $request->validate([
+            'image' => 'mimes:png,jpg,jpeg|max:1024,' // max size = 1024 kb, accepted formats : png,jpg,jpeg
+        ]);
+
+        $image = $request->file('image');
+        $file_path = $image->getPathName();
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('POST', 'https://api.imgur.com/3/image', [
+            'headers' => [
+                'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],
+            'form_params' => [
+                'image' => base64_encode(file_get_contents($request->file('image')->path($file_path)))
+            ],
+        ]);
+        $data = json_decode($response->getBody());
+
+        return response()->json([
+            "status" => "success",
+            "imageURL" => $data->data->link
+        ]);
+    });
 });

@@ -19,6 +19,7 @@ class CreateBeachesTable extends Migration
             $table->string("beach_name");
             $table->text('beach_description');
             $table->string('beach_location');
+            $table->string('image_link');
             $table->timestamps();
         });
     }
