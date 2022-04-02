@@ -9,14 +9,9 @@
 
 <body>
     <!-- navbar -->
-    <div class="relative flex justify-between items-center gap-5 py-5 z-10 top-0">
-        <div class="container flex items-center justify-end space-x-12">
-            <a href="" class="font-normal text-white">Log in</a>
-            <a href="" class="font-normal text-white">Sign Up</a>
-        </div>
-    </div>
+    @include('navbar')
     <!-- backgrond -->
-    <div class="relative -mt-16">
+    <div class="relative -mt-20">
         <div class="static">
             <img src="{{ asset('storage/asset/index_banner.png') }}" alt="" width="" class="bg-auto w-full brightness-50">
             <div class="absolute inset-0 ">
@@ -38,14 +33,14 @@
                     <div class="col-span-4">
                         <div class="relative">
                             <input type="text" class="rounded bg-gray-100 w-full px-3 py-3" placeholder="Search...">
-                            <div class="absolute top-0 right-0 flex items-center h-full">
-                                <div class="bg-cyan-600 rounded-r-lg w-14 flex justify-center">
-                                    <a href="">
+                            <div class="absolute top-0 -right-1 flex items-center h-full">
+                                <a href="">
+                                    <div class="bg-cyan-600 rounded-r-lg w-14 flex justify-center">
                                         <svg class="h-12 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                                         </svg>
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -67,37 +62,35 @@
         <p class="font-medium text-2xl">Choose your side</p>
         <p class="font-normal text-base text-gray-400">Surfing or diving ? we have it.</p>
         <div class="flex justify-around items-center py-12 px-5">
-            <div class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3">
+            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                     <img src="{{ asset('storage/asset/index_c1.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6">
                     <p class="text-black font-medium text-lg">Surfing Beach</p>
                     <p class="text-gray-400">Explore Beach for Surfing</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3">
+            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                     <img src="{{ asset('storage/asset/index_c2.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6">
                     <p class="text-black font-medium text-lg">Diving Beach</p>
                     <p class="text-gray-400">Explore Beach for Diving</p>
                 </div>
-            </div>
+            </a>
         </div>
         <!-- Explore -->
         <p class="font-medium text-2xl">Explore the best</p>
         <div class="relative flex justify-between">
             <p class="font-normal text-base text-gray-400 justify-start">Best of bali beach based on review</p>
-            <a href="" class="font-normal text-base text-green-500 justify-end">
-                Explore all >>
-            </a>
+            <a href="/explore" class="font-normal text-base text-green-500 justify-end hover:text-green-800">Explore all >></a>
         </div>
         <div class="flex justify-around items-center py-12 px-5 mx-14">
-            <div class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3">
+            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                     <img src="{{ asset('storage/asset/content1.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
@@ -105,9 +98,9 @@
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
                 </div>
-            </div>
-            <div class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3">
+            </a>
+            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                     <img src="{{ asset('storage/asset/content2.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
@@ -115,9 +108,9 @@
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
                 </div>
-            </div>
-            <div class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3">
+            </a>
+            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                     <img src="{{ asset('storage/asset/content3.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
@@ -125,9 +118,9 @@
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
                 </div>
-            </div>
-            <div class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3">
+            </a>
+            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                     <img src="{{ asset('storage/asset/content4.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
@@ -135,22 +128,10 @@
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
-    <div class="mx-auto py-5 bg-slate-100">
-        <div class="relative flex justify-evenly items-center -space-x-60 m-5 my-20">
-            <img src="{{ asset('storage/asset/undraw_my_app.svg') }}" alt="" class="w-80">
-            <div class="justify-start grid gap-5">
-                <p class="font-semibold text-3xl">Download HaloPantai App</p>
-                <p class="text-2xl text-gray-400">We will send you a link, open it on your <br> phone to download the app</p>
-                <div class="justify-start">
-                    <input type="text" class="rounded bg-white w-96 px-3 py-3" placeholder="Search...">
-                    <button class="rounded text-white bg-teal-500 mx-3 px-8 py-3">Send</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('ads')
     @include('footer')
 </body>
 
