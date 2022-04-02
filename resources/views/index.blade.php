@@ -34,13 +34,12 @@
         <div class="flex-none w-40"></div>
         <div class="grow mt-4">
             <div class="relative -mt-16 gap-5 py-5 rounded bg-white">
-                <div class="relative flex justify-between items-center">
-                    <div class="container flex items-center justify-center space-x-12">
-                        <!-- Search -->
+                <div class="grid grid-cols-6 items-center mx-10">
+                    <div class="col-span-4">
                         <div class="relative">
-                            <input type="text" class="rounded bg-gray-100 w-96 px-3 py-3" placeholder="Search...">
+                            <input type="text" class="rounded bg-gray-100 w-full px-3 py-3" placeholder="Search...">
                             <div class="absolute top-0 right-0 flex items-center h-full">
-                                <div class="bg-cyan-600 rounded w-10 flex justify-center">
+                                <div class="bg-cyan-600 rounded-r-lg w-14 flex justify-center">
                                     <a href="">
                                         <svg class="h-12 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
@@ -49,9 +48,13 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="" class="font-normal text-black">Discover</a>
-                        <a href="" class="font-normal text-black">Contact Us</a>
-                        <a href="" class="font-normal text-black">About Us</a>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="flex relative justify-center space-x-16">
+                            <a href="" class="font-normal text-gray-600 hover:text-blue-400">Discover</a>
+                            <a href="" class="font-normal text-gray-600 hover:text-blue-400">Contact Us</a>
+                            <a href="" class="font-normal text-gray-600 hover:text-blue-400">About Us</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,7 +100,7 @@
                 <div class="px-4 py-3">
                     <img src="{{ asset('storage/asset/content1.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
-                <div class="px-4 sm:px-6">
+                <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
@@ -107,7 +110,7 @@
                 <div class="px-4 py-3">
                     <img src="{{ asset('storage/asset/content2.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
-                <div class="px-4 sm:px-6">
+                <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
@@ -117,7 +120,7 @@
                 <div class="px-4 py-3">
                     <img src="{{ asset('storage/asset/content3.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
-                <div class="px-4 sm:px-6">
+                <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
@@ -127,7 +130,7 @@
                 <div class="px-4 py-3">
                     <img src="{{ asset('storage/asset/content4.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
-                <div class="px-4 sm:px-6">
+                <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
                     <p class="text-black font-medium">2.0 Rated</p>
                     <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
@@ -136,11 +139,11 @@
         </div>
     </div>
     <div class="mx-auto py-5 bg-slate-100">
-        <div class="relative flex justify-evenly items-center">
-            <img src="{{ asset('storage/asset/undraw_my_app.svg') }}" alt="" class="">
+        <div class="relative flex justify-evenly items-center -space-x-60 m-5 my-20">
+            <img src="{{ asset('storage/asset/undraw_my_app.svg') }}" alt="" class="w-80">
             <div class="justify-start grid gap-5">
                 <p class="font-semibold text-3xl">Download HaloPantai App</p>
-                <p class="text-3xl text-gray-400">We will send you a link, open it on your <br> phone to download the app</p>
+                <p class="text-2xl text-gray-400">We will send you a link, open it on your <br> phone to download the app</p>
                 <div class="justify-start">
                     <input type="text" class="rounded bg-white w-96 px-3 py-3" placeholder="Search...">
                     <button class="rounded text-white bg-teal-500 mx-3 px-8 py-3">Send</button>
@@ -148,15 +151,7 @@
             </div>
         </div>
     </div>
-    <div class="mx-auto py-5 bg-gray-900">
-        <div class="relative flex justify-evenly py-16 my-10 text-white items-center -space-x-36">
-            <p class="font-bold text-4xl italic">HaloPantek</p>
-            <p>About Us</p>
-            <p>Mobile Apps</p>
-            <p>Contact</p>
-            <p class="text-gray-400">Copyright © 2022 Yaman. All rights reserved.</p>
-        </div>
-    </div>
+    @include('footer')
 </body>
 
 </html>
