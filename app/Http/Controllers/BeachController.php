@@ -15,6 +15,7 @@ class BeachController extends Controller
      */
     public function index()
     {
+        dd("prankkkk");
         $beach =  Beach::all();
         return response()->json([
             "status" => "success",
