@@ -67,7 +67,7 @@
         <div class="flex justify-center items-center py-12">
             <div class="grid grid-cols-4 gap-5">
                 @for ($i = 1; $i <= 12; $i++) <div class="col-span-1">
-                    <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+                    <a href="/beach-detail" class="bg-white overflow-hidden rounded-lg w-full">
                         <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
                             <img src="{{ url('images/content1.png') }}" alt="" width="" class="bg-auto w-full">
                         </div>

@@ -675,6 +675,9 @@ select {
 .z-0 {
   z-index: 0;
 }
+.z-20 {
+  z-index: 20;
+}
 .col-span-1 {
   grid-column: span 1 / span 1;
 }
@@ -683,6 +686,9 @@ select {
 }
 .col-span-2 {
   grid-column: span 2 / span 2;
+}
+.col-span-3 {
+  grid-column: span 3 / span 3;
 }
 .col-start-2 {
   grid-column-start: 2;
@@ -808,6 +814,27 @@ select {
 .h-16 {
   height: 4rem;
 }
+.h-\[\] {
+  height: ;
+}
+.h-\[340px\] {
+  height: 340px;
+}
+.h-\[30px\] {
+  height: 30px;
+}
+.h-\[100px\] {
+  height: 100px;
+}
+.h-\[50px\] {
+  height: 50px;
+}
+.h-\[75px\] {
+  height: 75px;
+}
+.h-\[60px\] {
+  height: 60px;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -841,6 +868,26 @@ select {
 .w-auto {
   width: auto;
 }
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.w-\[30px\] {
+  width: 30px;
+}
+.w-\[100px\] {
+  width: 100px;
+}
+.w-\[50px\] {
+  width: 50px;
+}
+.w-\[75px\] {
+  width: 75px;
+}
+.w-\[60px\] {
+  width: 60px;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -865,6 +912,24 @@ select {
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.grid-rows-3 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
 .items-center {
   align-items: center;
 }
@@ -886,6 +951,9 @@ select {
 .justify-evenly {
   justify-content: space-evenly;
 }
+.justify-items-center {
+  justify-items: center;
+}
 .gap-5 {
   gap: 1.25rem;
 }
@@ -894,6 +962,9 @@ select {
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-3 {
+  gap: 0.75rem;
 }
 .-space-x-60 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -930,8 +1001,29 @@ select {
   margin-right: calc(3rem * var(--tw-space-x-reverse));
   margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.divide-y > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+}
+.divide-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+}
+.divide-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(8px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(8px * var(--tw-divide-y-reverse));
+}
+.divide-y-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 1;
+}
 .overflow-hidden {
   overflow: hidden;
+}
+.text-clip {
+  text-overflow: clip;
 }
 .rounded {
   border-radius: 0.25rem;
@@ -967,6 +1059,12 @@ select {
 .border-t {
   border-top-width: 1px;
 }
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+.border-b-2 {
+  border-bottom-width: 2px;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -978,6 +1076,18 @@ select {
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
+}
+.border-cyan-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(14 116 144 / var(--tw-border-opacity));
+}
+.border-cyan-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(8 145 178 / var(--tw-border-opacity));
+}
+.border-cyan-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 211 238 / var(--tw-border-opacity));
 }
 .bg-slate-100 {
   --tw-bg-opacity: 1;
@@ -1088,8 +1198,26 @@ select {
 .pt-8 {
   padding-top: 2rem;
 }
+.pt-4 {
+  padding-top: 1rem;
+}
+.pt-3 {
+  padding-top: 0.75rem;
+}
+.pl-4 {
+  padding-left: 1rem;
+}
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+.text-left {
+  text-align: left;
+}
 .text-center {
   text-align: center;
+}
+.text-justify {
+  text-align: justify;
 }
 .text-3xl {
   font-size: 1.875rem;
@@ -1134,6 +1262,9 @@ select {
 }
 .font-medium {
   font-weight: 500;
+}
+.font-light {
+  font-weight: 300;
 }
 .italic {
   font-style: italic;
@@ -1235,6 +1366,9 @@ select {
 .hover\:bg-cyan-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(14 116 144 / var(--tw-bg-opacity));
+}
+.hover\:text-center:hover {
+  text-align: center;
 }
 .hover\:text-black:hover {
   --tw-text-opacity: 1;
