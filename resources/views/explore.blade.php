@@ -13,7 +13,7 @@
     <!-- backgrond -->
     <div class="relative -mt-20">
         <div class="static">
-            <img src="{{ asset('storage/asset/explore_banner.png') }}" alt="" width="" class="bg-auto w-full brightness-50">
+            <img src="{{ url('images/explore_banner.png') }}" alt="" width="" class="bg-auto w-full brightness-50">
             <div class="absolute inset-0 ">
                 <div class="flex justify-center h-full">
                     <div class="m-auto grid gap-5">
@@ -69,7 +69,7 @@
                 @for ($i = 1; $i <= 12; $i++) <div class="col-span-1">
                     <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                         <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                            <img src="{{ asset('storage/asset/content1.png') }}" alt="" width="" class="bg-auto w-full">
+                            <img src="{{ url('images/content1.png') }}" alt="" width="" class="bg-auto w-full">
                         </div>
                         <div class="px-4 sm:px-6 grid gap-1">
                             <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>

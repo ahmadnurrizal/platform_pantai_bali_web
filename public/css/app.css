@@ -748,6 +748,12 @@ select {
 .-mt-16 {
   margin-top: -4rem;
 }
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mt-7 {
+  margin-top: 1.75rem;
+}
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -756,9 +762,6 @@ select {
 }
 .mr-2 {
   margin-right: 0.5rem;
-}
-.ml-2 {
-  margin-left: 0.5rem;
 }
 .ml-4 {
   margin-left: 1rem;
@@ -771,12 +774,6 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
-}
-.mt-10 {
-  margin-top: 2.5rem;
-}
-.mt-7 {
-  margin-top: 1.75rem;
 }
 .block {
   display: block;
@@ -802,26 +799,14 @@ select {
 .h-5 {
   height: 1.25rem;
 }
+.h-screen {
+  height: 100vh;
+}
 .h-8 {
   height: 2rem;
 }
 .h-16 {
   height: 4rem;
-}
-.h-4\/5 {
-  height: 80%;
-}
-.h-2\/3 {
-  height: 66.666667%;
-}
-.h-5\/6 {
-  height: 83.333333%;
-}
-.h-4\/6 {
-  height: 66.666667%;
-}
-.h-screen {
-  height: 100vh;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -847,32 +832,14 @@ select {
 .w-40 {
   width: 10rem;
 }
+.w-\[355px\] {
+  width: 355px;
+}
 .w-8 {
   width: 2rem;
 }
 .w-auto {
   width: auto;
-}
-.w-\[100px\] {
-  width: 100px;
-}
-.w-\[300px\] {
-  width: 300px;
-}
-.w-\[500px\] {
-  width: 500px;
-}
-.w-\[400px\] {
-  width: 400px;
-}
-.w-\[350px\] {
-  width: 350px;
-}
-.w-\[325px\] {
-  width: 325px;
-}
-.w-\[355px\] {
-  width: 355px;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -883,10 +850,6 @@ select {
 .grow {
   flex-grow: 1;
 }
-.columns-1 {
-  -moz-columns: 1;
-       columns: 1;
-}
 .grid-cols-11 {
   grid-template-columns: repeat(11, minmax(0, 1fr));
 }
@@ -896,11 +859,11 @@ select {
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
-.grid-cols-1 {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 .items-center {
   align-items: center;
@@ -922,9 +885,6 @@ select {
 }
 .justify-evenly {
   justify-content: space-evenly;
-}
-.justify-items-center {
-  justify-items: center;
 }
 .gap-5 {
   gap: 1.25rem;
@@ -969,11 +929,6 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(3rem * var(--tw-space-x-reverse));
   margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-x-2 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1056,17 +1011,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
-.bg-inherit {
-  background-color: inherit;
-}
-.bg-cyan-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(6 182 212 / var(--tw-bg-opacity));
-}
-.bg-cyan-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 116 144 / var(--tw-bg-opacity));
-}
 .bg-auto {
   background-size: auto;
 }
@@ -1138,17 +1082,11 @@ select {
 .pr-10 {
   padding-right: 2.5rem;
 }
-.pt-8 {
-  padding-top: 2rem;
-}
-.pb-4 {
-  padding-bottom: 1rem;
-}
 .pt-5 {
   padding-top: 1.25rem;
 }
-.pt-4 {
-  padding-top: 1rem;
+.pt-8 {
+  padding-top: 2rem;
 }
 .text-center {
   text-align: center;
@@ -1235,6 +1173,14 @@ select {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+.text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
+}
 .text-gray-200 {
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
@@ -1246,14 +1192,6 @@ select {
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
-}
-.text-green-600 {
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity));
-}
-.text-blue-400 {
-  --tw-text-opacity: 1;
-  color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -1328,14 +1266,6 @@ select {
 .focus\:border-indigo-300:focus {
   --tw-border-opacity: 1;
   border-color: rgb(165 180 252 / var(--tw-border-opacity));
-}
-.focus\:bg-cyan-700:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 116 144 / var(--tw-bg-opacity));
-}
-.focus\:bg-cyan-900:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(22 78 99 / var(--tw-bg-opacity));
 }
 .focus\:outline-none:focus {
   outline: 2px solid transparent;

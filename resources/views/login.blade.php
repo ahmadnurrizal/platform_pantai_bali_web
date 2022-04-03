@@ -10,7 +10,7 @@
 <body>
     <div class="grid grid-cols-2">
         <div class="">
-            <img src="{{ asset('storage/asset/banner.png') }}" alt="" width="" class="bg-cover h-screen w-full">
+            <img src="{{ url('images/banner.png') }}" alt="" width="" class="bg-cover h-screen w-full">
         </div>
         <div class="flex justify-center h-full">
             <div class="m-auto">
