@@ -10,7 +10,7 @@
     @endif
     <!-- @if(Request::is('/explore')) container @endif  -->
     <div class="flex items-center justify-end space-x-12">
-        <a href="" class="font-normal text-white hover:text-blue-400">Log in</a>
-        <a href="" class="font-normal text-white hover:text-blue-400">Sign Up</a>
+        <a href="/login" class="font-normal text-white hover:text-blue-400">Log in</a>
+        <a href="/register" class="font-normal text-white hover:text-blue-400">Sign Up</a>
     </div>
 </div>
