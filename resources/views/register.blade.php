@@ -19,6 +19,8 @@
                     <p class="text-3xl font-semibold">Register to your account</p>
                     <p class="text-base">Email</p>
                     <input type="email" class=" mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="ambatukam@example.com">
+                    <p class="text-base">Name</p>
+                    <input type="text" class=" mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Amba Tukam">
                     <p class="text-base">Password</p>
                     <input type="password" class=" mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="">
                     <p class="text-base">Confirm Password</p>
