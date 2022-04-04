@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beach;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BeachController extends Controller
@@ -15,10 +17,20 @@ class BeachController extends Controller
      */
     public function index()
     {
-        $beach =  Beach::all();
+        $allBeach =  Beach::all();
+
         return response()->json([
             "status" => "success",
-            "data" => $beach
+            "beach" => $allBeach,
+        ]);
+    }
+
+    public function favoriteBeach()
+    {
+        $userFavorite = Beach::leftjoin('favorites', 'beaches.id', '=', 'favorites.beach_id')->where('user_id', Auth::user()->id)->get();
+        return response()->json([
+            "status" => "success",
+            "beach" => $userFavorite,
         ]);
     }
 
@@ -53,9 +65,9 @@ class BeachController extends Controller
      */
     public function show($id)
     {
+        $totalFavorite = (new FavoriteController)->getBeachFavorite($id)->count();
+        $reviews = (new ReviewController)->getReview($id);
         $beach = Beach::find($id); // find data by id
-
-        // $user = auth()->user();
 
         if (!$beach) {
             return response()->json([
@@ -66,7 +78,9 @@ class BeachController extends Controller
 
         return response()->json([
             "status" => "success",
-            "data" => $beach,
+            "beach" => $beach,
+            "totalFavorite" => $totalFavorite,
+            "review" => $reviews,
         ]);
     }
 
@@ -88,7 +102,7 @@ class BeachController extends Controller
         }
 
         // $user = auth()->user();
-        $data = $request->all();
+        // $data = $request->all();
 
         // if ($beach->user_id != $user->id) { // check user can update beach or not (only user which create the beach can update)
         //     return response()->json([

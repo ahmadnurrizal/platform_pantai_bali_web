@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeachController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +32,7 @@ Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 //  PROTECTED ROUTE
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/beach', [BeachController::class, 'store']);
+    Route::get('/beach-favorite', [BeachController::class, 'favoriteBeach']);
     Route::post('/beach/{id}', [BeachController::class, 'update']);
     Route::delete('/beach/{id}', [BeachController::class, 'destroy']);
 
@@ -59,4 +62,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             "imageURL" => $data->data->link
         ]);
     });
+
+    Route::post('/favorite', [FavoriteController::class, 'store']);
+    Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy']);
+    Route::post('/review', [ReviewController::class, 'store']);
 });
