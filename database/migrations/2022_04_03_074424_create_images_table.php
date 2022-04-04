@@ -16,7 +16,7 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('beach_id')->constrained('beaches');
-            $table->string('path');
+            $table->string('url');
             $table->timestamps();
         });
     }

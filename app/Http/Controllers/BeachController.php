@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beach;
 use App\Models\Favorite;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,14 +47,43 @@ class BeachController extends Controller
             'beach_name' => 'required',
             'beach_description' => 'required',
             'beach_location' => 'required',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
 
         // insert data to beach table
-        $beach = Beach::create($request->all());
+        $beachData = $request->except('images');
+        $beach = Beach::create($beachData);
+
+        $files = $request->file('images');
+        $linkImages = array();
+        foreach ($files as $imagefile) {
+            $file_path = $imagefile->getPathName();
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('POST', 'https://api.imgur.com/3/image', [
+                'headers' => [
+                    'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+                    'content-type' => 'application/x-www-form-urlencoded',
+                ],
+                'form_params' => [
+                    'image' => base64_encode(file_get_contents($imagefile->path($file_path)))
+                ],
+            ]);
+            $linkImage = json_decode($response->getBody())->data->link;
+            Image::create([
+                'beach_id' => $beach->id,
+                'url' => $linkImage
+            ]);
+            array_push($linkImages,  $linkImage);
+        }
+
+
+
 
         return response()->json([
             "status" => "success",
             "data" => $beach,
+            "imageURL" => $linkImages
         ]);
     }
 

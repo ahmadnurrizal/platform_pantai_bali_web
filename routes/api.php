@@ -5,6 +5,7 @@ use App\Http\Controllers\BeachController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,32 +39,38 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::delete('/logout', [AuthController::class, 'logout']);
 
-    Route::post('/upload-image', function (Request $request) {
-        $request->validate([
-            'image' => 'mimes:png,jpg,jpeg|max:1024,' // max size = 1024 kb, accepted formats : png,jpg,jpeg
-        ]);
-
-        $image = $request->file('image');
-        $file_path = $image->getPathName();
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', 'https://api.imgur.com/3/image', [
-            'headers' => [
-                'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
-                'content-type' => 'application/x-www-form-urlencoded',
-            ],
-            'form_params' => [
-                'image' => base64_encode(file_get_contents($request->file('image')->path($file_path)))
-            ],
-        ]);
-        $data = json_decode($response->getBody());
-
-        return response()->json([
-            "status" => "success",
-            "imageURL" => $data->data->link
-        ]);
-    });
-
     Route::post('/favorite', [FavoriteController::class, 'store']);
     Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy']);
     Route::post('/review', [ReviewController::class, 'store']);
+
+
+    // Route::post('/upload-image', function (Request $request) {
+    //     if (!$request->hasFile('images')) {
+    //         return response()->json(['upload_file_not_found'], 400);
+    //     }
+    //     $request->validate([
+    //         'images' => 'required',
+    //         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024'
+    //     ]);
+    //     $files = $request->file('images');
+    //     $linkImages = array();
+    //     foreach ($files as $imagefile) {
+    //         $file_path = $imagefile->getPathName();
+    //         $client = new \GuzzleHttp\Client();
+    //         $response = $client->request('POST', 'https://api.imgur.com/3/image', [
+    //             'headers' => [
+    //                 'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+    //                 'content-type' => 'application/x-www-form-urlencoded',
+    //             ],
+    //             'form_params' => [
+    //                 'image' => base64_encode(file_get_contents($imagefile->path($file_path)))
+    //             ],
+    //         ]);
+    //         array_push($linkImages, json_decode($response->getBody())->data->link);
+    //     }
+    //     return response()->json([
+    //         "status" => "success",
+    //         "imageURL" => $linkImages
+    //     ]);
+    // });
 });

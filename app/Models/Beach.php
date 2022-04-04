@@ -9,4 +9,9 @@ class Beach extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function images()
+    {
+        return $this->hasMany('App\Image', 'beach_id');
+    }
 }
