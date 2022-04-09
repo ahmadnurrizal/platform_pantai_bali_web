@@ -5,7 +5,7 @@
             <p class="font-semibold text-3xl">Download HaloPantai App</p>
             <p class="text-2xl text-gray-400">We will send you a link, open it on your <br> phone to download the app</p>
             <div class="justify-start">
-                <input type="text" class="rounded bg-white w-96 px-3 py-3" placeholder="Search...">
+                <input type="text" class="rounded border border-teal-600 bg-white w-96 px-3 py-3" placeholder="Search...">
                 <button class="rounded text-white bg-teal-500 mx-3 px-8 py-3">Send</button>
             </div>
         </div>

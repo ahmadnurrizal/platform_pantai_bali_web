@@ -32,8 +32,8 @@
                 <div class="grid grid-cols-6 items-center mx-10">
                     <div class="col-span-4">
                         <div class="relative">
-                            <input type="text" class="rounded bg-gray-100 w-full px-3 py-3" placeholder="Search...">
-                            <div class="absolute top-0 -right-1 flex items-center h-full">
+                            <input type="text" class="rounded border-none bg-gray-100 w-full px-3 py-3" placeholder="Search...">
+                            <div class="absolute top-0 -right-1 flex items-center h-full pr-1">
                                 <a href="">
                                     <div class="bg-cyan-600 rounded-r-lg w-14 flex justify-center">
                                         <svg class="h-12 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
