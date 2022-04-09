@@ -17,8 +17,8 @@ class BeachSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             Beach::create([
                 'beach_name' => "Pantai Pandawa",
-                'beach_location' => "Balilahh cok",
-                'beach_description' => "ini ceritanya adalah descripsi tapi karena cuman dummy jadi isinya gini aja. gak papa kan. iya iyain aja"
+                'beach_location' => "Jalan Pantai Pandawa, Desa Kutuh, Kecamatan Kuta Selatan, Kabupaten Badung, Provinsi Bali 80361.",
+                'beach_description' => "Kebersihan pantai lumayan terjaga, serta ombak laut yang tenang. Saat anda menginjakan kaki di pasir pantai menghadap ke samudra Hindia. Anda akan melihat perpaduan warna yang sangat indah. Mulai dari warna pasir putih, warna air laut dipinggir pantai kehijauan dan semakin kedalam air laut berwarna biru."
             ]);
         }
     }
