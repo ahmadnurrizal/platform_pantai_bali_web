@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beach;
+use App\Models\Favorite;
+use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BeachController extends Controller
@@ -15,10 +18,20 @@ class BeachController extends Controller
      */
     public function index()
     {
-        $beach =  Beach::all();
+        $allBeach =  Beach::all();
+
         return response()->json([
             "status" => "success",
-            "data" => $beach
+            "beach" => $allBeach,
+        ]);
+    }
+
+    public function favoriteBeach()
+    {
+        $userFavorite = Beach::leftjoin('favorites', 'beaches.id', '=', 'favorites.beach_id')->where('user_id', Auth::user()->id)->get();
+        return response()->json([
+            "status" => "success",
+            "beach" => $userFavorite,
         ]);
     }
 
@@ -34,14 +47,43 @@ class BeachController extends Controller
             'beach_name' => 'required',
             'beach_description' => 'required',
             'beach_location' => 'required',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
 
         // insert data to beach table
-        $beach = Beach::create($request->all());
+        $beachData = $request->except('images');
+        $beach = Beach::create($beachData);
+
+        $files = $request->file('images');
+        $linkImages = array();
+        foreach ($files as $imagefile) {
+            $file_path = $imagefile->getPathName();
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('POST', 'https://api.imgur.com/3/image', [
+                'headers' => [
+                    'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
+                    'content-type' => 'application/x-www-form-urlencoded',
+                ],
+                'form_params' => [
+                    'image' => base64_encode(file_get_contents($imagefile->path($file_path)))
+                ],
+            ]);
+            $linkImage = json_decode($response->getBody())->data->link;
+            Image::create([
+                'beach_id' => $beach->id,
+                'url' => $linkImage
+            ]);
+            array_push($linkImages,  $linkImage);
+        }
+
+
+
 
         return response()->json([
             "status" => "success",
             "data" => $beach,
+            "imageURL" => $linkImages
         ]);
     }
 
@@ -53,9 +95,9 @@ class BeachController extends Controller
      */
     public function show($id)
     {
+        $totalFavorite = (new FavoriteController)->getBeachFavorite($id)->count();
+        $reviews = (new ReviewController)->getReview($id);
         $beach = Beach::find($id); // find data by id
-
-        // $user = auth()->user();
 
         if (!$beach) {
             return response()->json([
@@ -66,7 +108,9 @@ class BeachController extends Controller
 
         return response()->json([
             "status" => "success",
-            "data" => $beach,
+            "beach" => $beach,
+            "totalFavorite" => $totalFavorite,
+            "review" => $reviews,
         ]);
     }
 
@@ -88,7 +132,7 @@ class BeachController extends Controller
         }
 
         // $user = auth()->user();
-        $data = $request->all();
+        // $data = $request->all();
 
         // if ($beach->user_id != $user->id) { // check user can update beach or not (only user which create the beach can update)
         //     return response()->json([

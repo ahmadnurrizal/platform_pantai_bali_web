@@ -5,8 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rating extends Model
+class Image extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function product()
+    {
+        return $this->belongsTo('App\Beach', 'beach_id');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBeachesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateBeachesTable extends Migration
      */
     public function up()
     {
-        Schema::create('beaches', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained('users');
-            $table->string("beach_name");
-            $table->text('beach_description');
-            $table->string('beach_location');
+            $table->foreignId('beach_id')->constrained('beaches');
+            $table->string('url');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateBeachesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beaches');
+        Schema::dropIfExists('images');
     }
 }
