@@ -32,8 +32,8 @@
                 <div class="grid grid-cols-6 items-center mx-10">
                     <div class="col-span-4">
                         <div class="relative">
-                            <input type="text" class="rounded bg-gray-100 w-full px-3 py-3" placeholder="Search...">
-                            <div class="absolute top-0 -right-1 flex items-center h-full">
+                            <input type="text" class="rounded border-none bg-gray-100 w-full px-3 py-3" placeholder="Search...">
+                            <div class="absolute top-0 -right-1 flex items-center h-full pr-1">
                                 <a href="">
                                     <div class="bg-cyan-600 rounded-r-lg w-14 flex justify-center">
                                         <svg class="h-12 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -64,7 +64,7 @@
         <div class="flex justify-around items-center py-12 px-5">
             <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ asset('storage/asset/index_c1.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ url('images/index_c1.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6">
                     <p class="text-black font-medium text-lg">Surfing Beach</p>
@@ -74,7 +74,7 @@
 
             <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ asset('storage/asset/index_c2.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ url('images/index_c2.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6">
                     <p class="text-black font-medium text-lg">Diving Beach</p>
@@ -91,7 +91,7 @@
         <div class="flex justify-around items-center py-12 px-5 mx-14">
             <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ asset('storage/asset/content1.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ url('images/content1.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
@@ -101,7 +101,7 @@
             </a>
             <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ asset('storage/asset/content2.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ url('images/content2.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
@@ -111,7 +111,7 @@
             </a>
             <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ asset('storage/asset/content3.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ url('images/content3.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
@@ -121,7 +121,7 @@
             </a>
             <a href="" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ asset('storage/asset/content4.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ url('images/content4.png') }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
