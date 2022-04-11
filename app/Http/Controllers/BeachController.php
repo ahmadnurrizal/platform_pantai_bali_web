@@ -95,7 +95,7 @@ class BeachController extends Controller
      */
     public function show($id)
     {
-        $totalFavorite = (new FavoriteController)->getBeachFavorite($id)->count();
+        $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
         $beach = Beach::find($id); // find data by id
 

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Beach;
+use App\Models\Image;
 use Illuminate\Database\Seeder;
 
 class BeachSeeder extends Seeder
