@@ -18,12 +18,17 @@ class BeachController extends Controller
      */
     public function index()
     {
-        $allBeach =  Beach::all();
+        $allBeach =  Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
+        return view('explore')->with(compact('allBeach'));;
+    }
 
-        return response()->json([
-            "status" => "success",
-            "beach" => $allBeach,
-        ]);
+    function fetch_data(Request $request)
+    {
+        // dd("hiii");
+        if ($request->ajax()) {
+            $allBeach = Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
+            return view('pagination_data', compact('allBeach'))->render();
+        }
     }
 
     public function favoriteBeach()
@@ -70,13 +75,13 @@ class BeachController extends Controller
                 ],
             ]);
             $linkImage = json_decode($response->getBody())->data->link;
-            Image::create([
-                'beach_id' => $beach->id,
-                'url' => $linkImage
-            ]);
             array_push($linkImages,  $linkImage);
         }
 
+        Image::create([
+            'beach_id' => $beach->id,
+            'url' => $linkImage
+        ]);
 
 
 
