@@ -131,8 +131,9 @@ class BeachController extends Controller
     {
         $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
-        $beach = Beach::find($id); // find data by id
-
+        $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/' . $id . ''));
+        $images = $beach[1];
+        $detailBeach = $beach[0];
         if (!$beach) {
             return response()->json([
                 "status" => "error",
@@ -140,12 +141,18 @@ class BeachController extends Controller
             ]);
         }
 
-        return response()->json([
-            "status" => "success",
-            "beach" => $beach,
-            "totalFavorite" => $totalFavorite,
-            "review" => $reviews,
-        ]);
+        return view('beach-detail', compact('detailBeach', 'totalFavorite', 'reviews', 'images'));
+    }
+
+    public function getbeachById($id)
+    {
+        $beach = Beach::find($id); // find data by id
+        $images = Image::where('beach_id', $id)->get()->toArray();
+        $imageArray = [];
+        foreach ($images as $image) {
+            $imageArray[] = $image['url'];
+        }
+        return [$beach, $imageArray];
     }
 
     /**
