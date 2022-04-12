@@ -29,7 +29,7 @@ class BeachController extends Controller
             $temp->total,
             $temp->per_page,
             $temp->current_page,
-            ['path' => '/test']
+            ['path' => '/explore/fetch_data']
         );
         // dd($pagination);
         return view('explore', compact('allBeach'));
@@ -38,6 +38,26 @@ class BeachController extends Controller
     public function getData()
     {
         return Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
+    }
+
+    function fetch_data(Request $request)
+    {
+        // dd($request->ajax());
+        if ($request->ajax()) {
+            $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+            $allBeach = new LengthAwarePaginator(
+                $temp->data,
+                $temp->total,
+                $temp->per_page,
+                $temp->current_page,
+                ['path' => '/explore/fetch_data']
+
+            );
+            return view('pagination_data', compact('allBeach'))->render();
+            // dd($allBeach);
+            // return $allBeach;
+        }
+        // dd($allBeach);
     }
 
     public function favoriteBeach()

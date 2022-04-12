@@ -82,16 +82,22 @@
         $(document).ready(function () {
             $(document).on('click', '.pagination a', function (event) {
                 event.preventDefault();
+                // console.log("kkkkkk")
                 var page = $(this).attr('href').split('page=')[1];
                 fetch_data(page);
             });
 
             function fetch_data(page) {
+                // event.preventDefault();
                 $.ajax({
                     url: '/explore/fetch_data?page=' + page,
                     type: 'get',
                     success: function (data) {
+                        // console.log(data)
                         $('#all-beach').html(data);
+                    },
+                    error: function (xhr) {
+                        console.log(xhr.responseText);
                     }
                 });
             }

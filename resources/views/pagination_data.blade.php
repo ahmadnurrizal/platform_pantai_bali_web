@@ -13,7 +13,6 @@
     </div>
     @endforeach
     <div class="pagination">
-
         {{ $allBeach->links() }}
     </div>
 </div>
