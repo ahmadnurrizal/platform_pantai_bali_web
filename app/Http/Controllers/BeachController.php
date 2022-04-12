@@ -21,14 +21,15 @@ class BeachController extends Controller
     {
         // dd('kkkk');
         // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
-        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data'));
+        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+        // $allBeach =  $this->getData();
         // dd($allBeach);
-        return view('explore', $allBeach);
+        return view('explore', compact('allBeach'));
     }
 
     public function getData()
     {
-        return Beach::paginate(12);
+        return Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
     }
 
     public function favoriteBeach()
