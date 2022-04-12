@@ -30,12 +30,22 @@ class BeachSeeder extends Seeder
             Image::create([
                 'id' => $i + 25,
                 'beach_id' => $i,
-                'url' => "https://i.imgur.com/BSgiZfM.jpg"
+                'url' => "https://static.republika.co.id/uploads/images/inpicture_slide/wisatawan-bermain-di-pantai-sadranan-dusun-pulegundes-sidoarjo-tepus_211024220200-823.jpg"
             ]);
             Image::create([
                 'id' => $i + 50,
                 'beach_id' => $i,
                 'url' => "https://i.imgur.com/BSgiZfM.jpg"
+            ]);
+            Image::create([
+                'id' => $i + 75,
+                'beach_id' => $i,
+                'url' => "https://i.imgur.com/BSgiZfM.jpg"
+            ]);
+            Image::create([
+                'id' => $i + 100,
+                'beach_id' => $i,
+                'url' => "https://phinemo.com/wp-content/uploads/2021/03/beach-min-2.jpg"
             ]);
         }
     }
