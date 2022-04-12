@@ -28,12 +28,12 @@ class BeachSeeder extends Seeder
                 'url' => "https://i.imgur.com/BSgiZfM.jpg"
             ]);
             Image::create([
-                'id' => $i + 15,
+                'id' => $i + 25,
                 'beach_id' => $i,
                 'url' => "https://i.imgur.com/BSgiZfM.jpg"
             ]);
             Image::create([
-                'id' => $i + 30,
+                'id' => $i + 50,
                 'beach_id' => $i,
                 'url' => "https://i.imgur.com/BSgiZfM.jpg"
             ]);
