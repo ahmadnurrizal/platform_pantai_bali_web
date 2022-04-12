@@ -28,7 +28,7 @@ class BeachController extends Controller
 
     public function getData()
     {
-        return Beach::pagination(12);
+        return Beach::paginate(12);
     }
 
     public function favoriteBeach()
