@@ -26,6 +26,7 @@ Route::post('/login', [AuthController::class, 'login']); // login
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/beach', [BeachController::class, 'index']);
+Route::get('/beach/get-data', [BeachController::class, 'getData']);
 Route::get('/beach/{id}', [BeachController::class, 'show']);
 Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 

@@ -8,6 +8,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BeachController extends Controller
 {
@@ -18,17 +19,16 @@ class BeachController extends Controller
      */
     public function index()
     {
-        $allBeach =  Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
-        return view('explore')->with(compact('allBeach'));;
+        // dd('kkkk');
+        // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
+        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data'));
+        // dd($allBeach);
+        return view('explore', $allBeach);
     }
 
-    function fetch_data(Request $request)
+    public function getData()
     {
-        // dd("hiii");
-        if ($request->ajax()) {
-            $allBeach = Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
-            return view('pagination_data', compact('allBeach'))->render();
-        }
+        return Beach::pagination(12);
     }
 
     public function favoriteBeach()
