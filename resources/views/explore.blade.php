@@ -64,21 +64,10 @@
                 </select>
             </div>
         </div>
-        <div class="flex justify-center items-center py-12">
-            <div class="grid grid-cols-4 gap-5">
-                @for ($i = 1; $i <= 12; $i++) <div class="col-span-1">
-                    <a href="/beach-detail" class="bg-white overflow-hidden rounded-lg w-full">
-                        <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                            <img src="{{ url('images/content1.png') }}" alt="" width="" class="bg-auto w-full">
-                        </div>
-                        <div class="px-4 sm:px-6 grid gap-1">
-                            <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
-                            <p class="text-black font-medium">2.0 Rated</p>
-                            <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
-                        </div>
-                    </a>
-            </div>
-            @endfor
+        <div class="flex justify-center items-center py-12" id="all-beach">
+            {{ $allBeach }}
+            @include('pagination_data')
+
         </div>
     </div>
     <!-- pagination -->
