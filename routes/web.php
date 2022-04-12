@@ -29,6 +29,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/beach-detail', function () {
-    return view('beach-detail');
-});
+// Route::get('/beach-detail', function () {
+//     return view('beach-detail');
+// });
+Route::get('/beach-detail/{id}', [BeachController::class, 'show']);
