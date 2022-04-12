@@ -6,6 +6,7 @@ use App\Models\Beach;
 use App\Models\Favorite;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -21,9 +22,16 @@ class BeachController extends Controller
     {
         // dd('kkkk');
         // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
-        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+        $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
         // $allBeach =  $this->getData();
-        // dd($allBeach);
+        $allBeach = new LengthAwarePaginator(
+            $temp->data,
+            $temp->total,
+            $temp->per_page,
+            $temp->current_page,
+            ['path' => '/test']
+        );
+        // dd($pagination);
         return view('explore', compact('allBeach'));
     }
 

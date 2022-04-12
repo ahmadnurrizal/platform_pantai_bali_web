@@ -14,6 +14,6 @@
     @endforeach
     <div class="pagination">
 
-        {!! $allBeach->links() !!}
+        {{ $allBeach->links() }}
     </div>
 </div>

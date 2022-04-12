@@ -15,7 +15,7 @@ class BeachSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 10; $i <= 20; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             Beach::create([
                 'id' => $i,
                 'beach_name' => "Pantai Pandawa",
