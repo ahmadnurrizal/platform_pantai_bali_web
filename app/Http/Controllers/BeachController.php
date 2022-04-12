@@ -131,7 +131,8 @@ class BeachController extends Controller
     {
         $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
-        $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/' . $id . ''));
+        $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
+        // dd($beach);
         $images = $beach[1];
         $detailBeach = $beach[0];
         if (!$beach) {
