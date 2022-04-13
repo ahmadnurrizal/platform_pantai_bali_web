@@ -33,3 +33,7 @@ Route::get('/register', function () {
 //     return view('beach-detail');
 // });
 Route::get('/beach-detail/{id}', [BeachController::class, 'show']);
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
