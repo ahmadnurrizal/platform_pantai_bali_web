@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeachController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,13 +22,17 @@ Route::get('/', function () {
 Route::get('/explore/fetch_data', [BeachController::class, 'fetch_data']);
 Route::get('/explore', [BeachController::class, 'index']);
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
-Route::get('/register', function () {
-    return view('register');
-});
+// Route::get('/register', function () {
+//     return view('register');
+// });
+// Route::get('/login', [AuthController::class, 'loginView']);
+Route::get('/login', [AuthController::class, 'loginView']);
+Route::post('/loginAction', [AuthController::class, 'loginAction']);
+Route::get('/register', [AuthController::class, 'RegisterView']);
 
 // Route::get('/beach-detail', function () {
 //     return view('beach-detail');
