@@ -180,6 +180,12 @@
         console.log(id);
         var token = $("meta[name='csrf-token']").attr("content");
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $.ajax(
             {
                 url: "https://review-pantai.herokuapp.com/api/beach/delete/" + id,
