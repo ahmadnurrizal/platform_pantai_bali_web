@@ -176,19 +176,23 @@
     }
 
     $(".deleteRecord").click(function () {
-        var id = $(this).data("id");
+        var id = parseInt($(this).data("id"));
+        console.log(id);
         var token = $("meta[name='csrf-token']").attr("content");
 
         $.ajax(
             {
-                url: "api/beach/delete/" + id,
-                type: 'DELETE',
+                url: "https://review-pantai.herokuapp.com/api/beach/delete/" + id,
+                type: 'post',
                 data: {
                     "id": id,
                     "_token": token,
                 },
                 success: function () {
                     console.log("it Works");
+                },
+                error: function (xhr) {
+                    console.log(xhr.responseText);
                 }
             });
 

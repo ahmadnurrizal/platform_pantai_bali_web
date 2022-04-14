@@ -27,8 +27,10 @@
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $beach->beach_description }}</td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                <a href="javascript:void(0)" onClick="delete_data({{ $beach->id }})"
-                    class="text-red-600 hover:text-indigo-900">Delete</a>
+                <!-- <a href="javascript:void(0)" onClick="delete_data({{ $beach->id }})"
+                    class="text-red-600 hover:text-indigo-900">Delete</a> -->
+                <!-- <a href="{{route('beach.destroy', [$beach->id])}}" class="text-red-600 hover:text-indigo-900">Delete</a> -->
+                <button class="deleteRecord" data-id="{{ $beach->id }}">Delete Record</button>
             </td>
         </tr>
 

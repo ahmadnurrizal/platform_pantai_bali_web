@@ -43,6 +43,7 @@ class BeachController extends Controller
     {
         // $beaches = $this->getData();
         $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        // $beaches =  $this->getData();
         return view('admin.index', compact('beaches'));
     }
 
@@ -215,8 +216,9 @@ class BeachController extends Controller
      */
     public function destroy($id)
     {
-
+        // $beach_id =  (int)$id;
         $beach = Beach::find($id);
+
         // dd("hhh");
         // $user = auth()->user();
 
@@ -227,14 +229,14 @@ class BeachController extends Controller
         //     ]);
         // }
 
-        // if (!$beach) {
-        //     return response()->json([
-        //         "status" => "error",
-        //         "message" => "beach not found",
-        //     ], 404);
-        // }
+        if (!$beach) {
+            return response()->json([
+                "status" => "error",
+                "message" => "beach not found",
+            ], 404);
+        }
 
-        $beach->delete();
+        $beach->delete($id);
 
         return response()->json([
             "status" => "successsssssss",
