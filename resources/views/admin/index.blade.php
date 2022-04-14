@@ -185,10 +185,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $.ajax(
             {
-                url: "https://review-pantai.herokuapp.com/api/beach/delete/" + id,
+                url: "/api/beach/deleteAPI/" + id,
                 type: 'post',
                 data: {
                     "id": id,

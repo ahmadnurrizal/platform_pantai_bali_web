@@ -214,20 +214,11 @@ class BeachController extends Controller
      * @param  \App\Models\Beach  $beach
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         // $beach_id =  (int)$id;
         $beach = Beach::find($id);
-
-        // dd("hhh");
-        // $user = auth()->user();
-
-        // if ($beach->user_id != $user->id) { // check user can delete beach or not (only user which create the beach can delete)
-        //     return response()->json([
-        //         "status" => "error",
-        //         "message" => "user can't delete beach"
-        //     ]);
-        // }
 
         if (!$beach) {
             return response()->json([
@@ -239,9 +230,32 @@ class BeachController extends Controller
         $beach->delete($id);
 
         return response()->json([
-            "status" => "successsssssss",
-            "message" => "beach deleted"
+            "status" => "success",
+            "message" => "beach deleted",
         ]);
+    }
+
+    public function destroyAPI($id)
+    {
+        $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id));
+        var_dump($beach);
+        if (!$beach[0] == NULL) {
+            $apiURL = 'https://review-pantai.herokuapp.com/api/beach/delete/' . $id;
+            $response = Http::post($apiURL);
+            $responseBody = json_decode($response->getBody(), true);
+            $beach->delete($id);
+
+            return response()->json([
+                "status" => "success",
+                "message" => "beach deleted",
+                'response' => $responseBody
+            ]);
+        } else {
+            return response()->json([
+                "status" => "error",
+                "message" => "beach not found",
+            ], 404);
+        }
     }
 
     public function search($beach_name)

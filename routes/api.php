@@ -45,6 +45,7 @@ Route::post('/beach', [BeachController::class, 'store']);
 Route::get('/beach-favorite', [BeachController::class, 'favoriteBeach']);
 Route::post('/beach/{id}', [BeachController::class, 'update']);
 Route::post('/beach/delete/{id}', [BeachController::class, 'destroy'])->name('beach.destroy');
+Route::post('/beach/deleteAPI/{id}', [BeachController::class, 'destroyAPI'])->name('beach.destroyAPI');
 
 Route::delete('/logout', [AuthController::class, 'logout']);
 
