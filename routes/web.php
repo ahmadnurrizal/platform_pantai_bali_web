@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+Route::get('/', [BeachController::class, 'indexHome']);
 
 Route::get('/explore/fetch_data', [BeachController::class, 'fetch_data']);
 Route::get('/explore', [BeachController::class, 'index']);

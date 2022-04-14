@@ -39,6 +39,17 @@ class BeachController extends Controller
         return view('explore', compact('allBeach'));
     }
 
+    public function indexHome()
+    {
+        $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        for ($i = 0; $i < 4; $i++) {
+            $allBeach[] = $temp[$i];
+        }
+        // dd($allBeach);
+
+        return view('index', compact('allBeach'));
+    }
+
     public function getDataAdmin()
     {
         // $beaches = $this->getData();
@@ -121,18 +132,23 @@ class BeachController extends Controller
             array_push($linkImages,  $linkImage);
         }
 
-        Image::create([
-            'beach_id' => $beach->id,
-            'url' => $linkImage
-        ]);
+        foreach ($linkImages as $url) {
+            Image::create([
+                'beach_id' => $beach->id,
+                'url' => $url
+            ]);
+        }
 
+        return redirect()->intended('/admin');
+        // return response()->json([
+        //     "status" => "success",
+        //     "data" => $beach,
+        //     "imageURL" => $linkImages
+        // ]);
+    }
 
-
-        return response()->json([
-            "status" => "success",
-            "data" => $beach,
-            "imageURL" => $linkImages
-        ]);
+    public function storeAPI()
+    {
     }
 
     /**
@@ -243,7 +259,7 @@ class BeachController extends Controller
             $apiURL = 'https://review-pantai.herokuapp.com/api/beach/delete/' . $id;
             $response = Http::post($apiURL);
             $responseBody = json_decode($response->getBody(), true);
-            $beach->delete($id);
+            // $beach->delete($id);
 
             return response()->json([
                 "status" => "success",

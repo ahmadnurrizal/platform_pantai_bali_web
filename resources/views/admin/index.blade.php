@@ -118,8 +118,8 @@
                         <!-- Replace with your content -->
                         <div class="py-4">
                             <!-- <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div> -->
-                            @include('admin.beach')
-                            <!-- include('admin.beach-add') -->
+                            {{-- include('admin.beach') --}}
+                            @include('admin.beach-add')
                             <!-- include('admin.dashboard') -->
                         </div>
                         <!-- /End replace -->
@@ -132,49 +132,6 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 <script type="text/javascript">
-    // function edit_data(e) {
-    //     $('#modal').modal('show')
-    //     var url = "{{url('item')}}" + "/" + e.attr('data-id') + "/" + "edit"
-    //     $.ajax({
-    //         url: url,
-    //         method: "GET",
-    //         // dataType: "json",
-    //         success: function (result) {
-    //             console.log(result)
-    //             $("#modal-title").html("Edit Data item")
-    //             $('#id').val(result.id).trigger('change');
-    //             $('#name').val(result.name);
-    //             $('#description').val(result.description);
-    //             $('#category').val(result.category);
-    //             $('#quantity').val(result.quantity);
-    //             $('#stored_location').val(result.stored_location);
-
-    //         },
-    //         error: function (xhr) {
-    //             console.log(xhr.responseText);
-    //         }
-
-    //     });
-    // }
-
-    function delete_data(e) {
-        var id = e
-        jQuery.ajax({
-            url: "{{url('/api/beach/delete')}}" + "/" + id,
-            type: "DELETE",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (result) {
-                alert(JSON.stringify(result))
-            },
-            error: function (xhr) {
-                console.log(xhr.responseText);
-            }
-        });
-
-    }
-
     $(".deleteRecord").click(function () {
         var id = parseInt($(this).data("id"));
         console.log(id);
@@ -195,6 +152,9 @@
                 },
                 success: function () {
                     console.log("it Works");
+                    window.location.reload();
+                    alert('Success delete data')
+                    location.reload();
                 },
                 error: function (xhr) {
                     console.log(xhr.responseText);

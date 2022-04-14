@@ -89,46 +89,17 @@
             <a href="/explore" class="font-normal text-base text-green-500 justify-end hover:text-green-800">Explore all >></a>
         </div>
         <div class="flex justify-around items-center py-12 px-5 mx-14">
-            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
+            @foreach ($allBeach as $beach )
+            <a href="/beach-detail/{{ $beach->id }}" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ url('images/content1.png') }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ $beach->images[0]->url }}" alt="" width="" class="bg-auto w-full">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
-                    <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
-                    <p class="text-black font-medium">2.0 Rated</p>
-                    <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
+                    <p class="text-black font-medium text-lg">{{ $beach->beach_name }}</p>
+                    <p class="text-gray-400 text-sm">{{ $beach->beach_location }}</p>
                 </div>
             </a>
-            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ url('images/content2.png') }}" alt="" width="" class="bg-auto w-full">
-                </div>
-                <div class="px-4 sm:px-6 grid gap-1">
-                    <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
-                    <p class="text-black font-medium">2.0 Rated</p>
-                    <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
-                </div>
-            </a>
-            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ url('images/content3.png') }}" alt="" width="" class="bg-auto w-full">
-                </div>
-                <div class="px-4 sm:px-6 grid gap-1">
-                    <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
-                    <p class="text-black font-medium">2.0 Rated</p>
-                    <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
-                </div>
-            </a>
-            <a href="" class="bg-white overflow-hidden rounded-lg w-full">
-                <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ url('images/content4.png') }}" alt="" width="" class="bg-auto w-full">
-                </div>
-                <div class="px-4 sm:px-6 grid gap-1">
-                    <p class="text-black font-medium text-lg">Pantai Tidak Berpenghuni</p>
-                    <p class="text-black font-medium">2.0 Rated</p>
-                    <p class="text-gray-400 text-sm">Jalan Rusak no.69, Bali Utara</p>
-                </div>
-            </a>
+            @endforeach
         </div>
     </div>
     @include('ads')
@@ -136,3 +107,4 @@
 </body>
 
 </html>
+
