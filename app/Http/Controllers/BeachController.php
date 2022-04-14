@@ -22,22 +22,35 @@ class BeachController extends Controller
     {
         // dd('kkkk');
         // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
-        $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
         // $allBeach =  $this->getData();
-        $allBeach = new LengthAwarePaginator(
-            $temp->data,
-            $temp->total,
-            $temp->per_page,
-            $temp->current_page,
-            ['path' => '/explore/fetch_data']
-        );
-        // dd($pagination);
+        // dd($allBeach);
+        // $allBeach =  $this->getData();
+        // $allBeach = new LengthAwarePaginator(
+        //     $temp->data,
+        //     $temp->total,
+        //     $temp->per_page,
+        //     $temp->current_page,
+        //     ['path' => '/explore/fetch_data']
+        // );
+        // dd($allBeach[0]->images[1]->url);
+        // dd($allBeach[0]->image[1]->url);
+        // dd($allBeach);
         return view('explore', compact('allBeach'));
     }
 
+    public function getDataAdmin()
+    {
+        $beaches = $this->getData();
+        // dd($beaches);
+
+        return view('admin.index', compact('beaches'));
+    }
+
+
     public function getData()
     {
-        return Beach::leftJoin('images', 'beaches.id', '=', 'images.beach_id')->paginate(12);
+        return (Beach::with('images')->get());
     }
 
     function fetch_data(Request $request)
@@ -129,9 +142,11 @@ class BeachController extends Controller
      */
     public function show($id)
     {
+        // dd("kkkkk");
         $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
         $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
+        // $beach = $this->getbeachById($id);
         // dd($beach);
         $images = $beach[1];
         $detailBeach = $beach[0];
@@ -153,6 +168,7 @@ class BeachController extends Controller
         foreach ($images as $image) {
             $imageArray[] = $image['url'];
         }
+        // dd($imageArray)
         return [$beach, $imageArray];
     }
 
@@ -199,7 +215,9 @@ class BeachController extends Controller
      */
     public function destroy($id)
     {
+
         $beach = Beach::find($id);
+        // dd("hhh");
         // $user = auth()->user();
 
         // if ($beach->user_id != $user->id) { // check user can delete beach or not (only user which create the beach can delete)
@@ -209,17 +227,17 @@ class BeachController extends Controller
         //     ]);
         // }
 
-        if (!$beach) {
-            return response()->json([
-                "status" => "error",
-                "message" => "beach not found",
-            ], 404);
-        }
+        // if (!$beach) {
+        //     return response()->json([
+        //         "status" => "error",
+        //         "message" => "beach not found",
+        //     ], 404);
+        // }
 
         $beach->delete();
 
         return response()->json([
-            "status" => "success",
+            "status" => "successsssssss",
             "message" => "beach deleted"
         ]);
     }

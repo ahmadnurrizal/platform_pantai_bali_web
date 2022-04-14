@@ -12,6 +12,6 @@ class Beach extends Model
 
     public function images()
     {
-        return $this->hasMany('App\Image', 'beach_id');
+        return $this->hasMany(Image::class, 'beach_id', 'id');
     }
 }

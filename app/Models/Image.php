@@ -10,8 +10,8 @@ class Image extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function product()
+    public function beaches()
     {
-        return $this->belongsTo('App\Beach', 'beach_id');
+        return $this->belongsTo(Beach::class, 'beach_id', 'id');
     }
 }

@@ -38,3 +38,8 @@ Route::get('/register', [AuthController::class, 'RegisterView']);
 //     return view('beach-detail');
 // });
 Route::get('/beach-detail/{id}', [BeachController::class, 'show']);
+
+// Route::get('/admin', function () {
+//     return view('admin.index');
+// });
+Route::get('/admin', [BeachController::class, 'getDataAdmin']);
