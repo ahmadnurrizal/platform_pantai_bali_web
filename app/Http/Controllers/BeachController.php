@@ -22,7 +22,7 @@ class BeachController extends Controller
     {
         // dd('kkkk');
         // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
-        $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
         // $allBeach =  $this->getData();
         // dd($allBeach);
         // $allBeach =  $this->getData();
