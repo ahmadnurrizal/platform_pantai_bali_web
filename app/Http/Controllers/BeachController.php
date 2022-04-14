@@ -112,10 +112,11 @@ class BeachController extends Controller
         $beachData = $req->except('images');
         $beach = Beach::create($beachData);
 
-        return response()->json([
-            "status" => "success",
-            "data" => $beach,
-        ]);
+        // return response()->json([
+        //     "status" => "success",
+        //     "data" => $beach,
+        // ]);
+        return $beach;
     }
 
     public function imageAPI(Request $req)
@@ -132,12 +133,13 @@ class BeachController extends Controller
     {
         // insert data to beach table
 
-        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+        $responseBeach = Http::post('https://review-pantai.herokuapp.com/api/beach', [
             'beach_name' => $req->beach_name,
             'beach_location' => $req->beach_location,
             'beach_description' => $req->beach_description,
         ]);
-        $beach_id = (json_decode($response->body())->data->id);
+        $beach_id = (json_decode($responseBeach->body())->id);
+        // $beach_id = (json_decode($responseBeach->body())->data->id);
         $files = $req->file('images');
         $linkImages = array();
         foreach ($files as $imagefile) {
