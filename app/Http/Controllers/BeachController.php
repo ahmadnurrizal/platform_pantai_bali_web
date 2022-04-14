@@ -109,7 +109,7 @@ class BeachController extends Controller
             'beach_location' => 'required',
         ]);
 
-        $beachData = $req->except('images');
+        $beachData = $req->all();
         $beach = Beach::create($beachData);
 
         // return response()->json([
