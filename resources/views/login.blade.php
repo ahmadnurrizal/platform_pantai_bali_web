@@ -14,6 +14,7 @@
         </div>
         <div class="flex justify-center h-full">
             <div class="z-10 m-auto static">
+
                 <div class="grid gap-2 w-[355px]">
                     <p class="text-lg text-gray-500">Welcome to HaloPantai</p>
                     <p class="text-3xl font-semibold">Login to your account</p>
