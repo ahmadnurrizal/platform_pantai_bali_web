@@ -120,11 +120,12 @@ class BeachController extends Controller
 
     public function imageAPI(Request $req)
     {
-        var_dump($req);
-        Image::create([
+        $img = Image::create([
             'beach_id' => $req->beach_id,
             'url' => $req->url
         ]);
+
+        return $img;
     }
 
     public function storeAPI(Request $req)
@@ -132,7 +133,6 @@ class BeachController extends Controller
         // insert data to beach table
 
         $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
-            // $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
             'beach_name' => $req->beach_name,
             'beach_location' => $req->beach_location,
             'beach_description' => $req->beach_description,
@@ -158,7 +158,6 @@ class BeachController extends Controller
         var_dump($beach_id);
         foreach ($linkImages as $url) {
             $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
-                // $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
                 'url' => $url,
                 'beach_id' => $beach_id
             ]);
