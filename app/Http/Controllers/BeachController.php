@@ -55,7 +55,7 @@ class BeachController extends Controller
         // $beaches = $this->getData();
         $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
         // $beaches =  $this->getData();
-        return view('admin.index', compact('beaches'));
+        return view('admin.beach', compact('beaches'));
     }
 
 
