@@ -153,7 +153,7 @@ class BeachController extends Controller
             $linkImage = json_decode($response->getBody())->data->link;
             array_push($linkImages,  $linkImage);
         }
-
+        var_dump($beach_id);
         foreach ($linkImages as $url) {
             $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
                 'url' => $url,
