@@ -109,7 +109,7 @@
                         console.log(response)
                         // alert(response)
                         alert("Success add beach")
-                        // window.location.reload();
+                        window.location.reload();
                     },
                     error: function (xhr) {
                         console.log(xhr.responseText);

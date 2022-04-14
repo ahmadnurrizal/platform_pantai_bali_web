@@ -43,6 +43,7 @@ Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById'])
 
 Route::post('/beach', [BeachController::class, 'store']);
 Route::post('/beachAPI', [BeachController::class, 'storeAPI']);
+Route::post('/image', [BeachController::class, 'imageAPI']);
 Route::get('/beach-favorite', [BeachController::class, 'favoriteBeach']);
 Route::post('/beach/{id}', [BeachController::class, 'update']);
 Route::post('/beach/delete/{id}', [BeachController::class, 'destroy'])->name('beach.destroy');

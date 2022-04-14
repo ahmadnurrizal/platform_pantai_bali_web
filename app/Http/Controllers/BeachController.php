@@ -102,21 +102,40 @@ class BeachController extends Controller
      */
     public function store(Request $req)
     {
-
         // var_dump($req);
-        // var_dump($request);
         $req->validate([
             'beach_name' => 'required',
             'beach_description' => 'required',
             'beach_location' => 'required',
-            'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
-
 
         $beachData = $req->except('images');
         $beach = Beach::create($beachData);
 
+        return response()->json([
+            "status" => "success",
+            "data" => $beach,
+        ]);
+    }
+
+    public function imageAPI(Request $req)
+    {
+        Image::create([
+            'beach_id' => $req->beach_id,
+            'url' => $req->beach_id
+        ]);
+    }
+
+    public function storeAPI(Request $req)
+    {
+        // insert data to beach table
+
+        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+            'beach_name' => $req->beach_name,
+            'beach_location' => $req->beach_location,
+            'beach_description' => $req->beach_description,
+        ]);
+        $beach_id = (json_decode($response->body())->data->id);
         $files = $req->file('images');
         $linkImages = array();
         foreach ($files as $imagefile) {
@@ -136,65 +155,11 @@ class BeachController extends Controller
         }
 
         foreach ($linkImages as $url) {
-            Image::create([
-                'beach_id' => $beach->id,
-                'url' => $url
+            $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
+                'url' => $url,
+                'beach_id' => $beach_id
             ]);
         }
-
-        return response()->json([
-            "status" => "success",
-            "data" => $beach,
-            "imageURL" => $linkImages
-        ]);
-        // $linkImages = ["aaaaaaaaa", 'bbbbbbbbbbb', 'ccccccccccccc'];
-        return $linkImages;
-    }
-
-
-    public function storeAPI(Request $req)
-    {
-        // insert data to beach table
-
-        $response = Http::post('http://127.0.0.1:8001/api/beach', [
-            'beach_name' => $req->beach_name,
-            'beach_location' => $req->beach_location,
-            'beach_description' => $req->beach_description,
-        ]);
-
-        // var_dump(json_decode($response->body()));
-        $responseJson = json_decode($response->body());
-        return $responseJson;
-        // $files = $req->file('images');
-        // $linkImages = array();
-        // foreach ($files as $imagefile) {
-        //     $file_path = $imagefile->getPathName();
-        //     $client = new \GuzzleHttp\Client();
-        //     $response = $client->request('POST', 'https://api.imgur.com/3/image', [
-        //         'headers' => [
-        //             'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
-        //             'content-type' => 'application/x-www-form-urlencoded',
-        //         ],
-        //         'form_params' => [
-        //             'image' => base64_encode(file_get_contents($imagefile->path($file_path)))
-        //         ],
-        //     ]);
-        //     $linkImage = json_decode($response->getBody())->data->link;
-        //     array_push($linkImages,  $linkImage);
-        // }
-
-
-        // $response = $this->store($req);
-
-        // var_dump($response[0]->beach_name);
-        // $response = Http::post('http://example.com/users', [
-        //     'beach_name' => $response[0]->beach_name,
-        //     'beach_location' => $response[0]->beach_location,
-        //     'beach_description' => $response[0]->beach_description,
-        //     // 'images' => $linkImages,
-        //     // 'beach_id' => $linkImages
-        // ]);
-
         // return redirect()->intended('/admin');
     }
 
