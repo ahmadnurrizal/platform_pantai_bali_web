@@ -100,21 +100,43 @@ class BeachController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        $request->validate([
+        // var_dump($req);
+        $req->validate([
             'beach_name' => 'required',
             'beach_description' => 'required',
             'beach_location' => 'required',
-            'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024'
         ]);
 
-        // insert data to beach table
-        $beachData = $request->except('images');
+        $beachData = $req->except('images');
         $beach = Beach::create($beachData);
 
-        $files = $request->file('images');
+        return response()->json([
+            "status" => "success",
+            "data" => $beach,
+        ]);
+    }
+
+    public function imageAPI(Request $req)
+    {
+        Image::create([
+            'beach_id' => $req->beach_id,
+            'url' => $req->beach_id
+        ]);
+    }
+
+    public function storeAPI(Request $req)
+    {
+        // insert data to beach table
+
+        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+            'beach_name' => $req->beach_name,
+            'beach_location' => $req->beach_location,
+            'beach_description' => $req->beach_description,
+        ]);
+        $beach_id = (json_decode($response->body())->data->id);
+        $files = $req->file('images');
         $linkImages = array();
         foreach ($files as $imagefile) {
             $file_path = $imagefile->getPathName();
@@ -133,22 +155,12 @@ class BeachController extends Controller
         }
 
         foreach ($linkImages as $url) {
-            Image::create([
-                'beach_id' => $beach->id,
-                'url' => $url
+            $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
+                'url' => $url,
+                'beach_id' => $beach_id
             ]);
         }
-
-        return redirect()->intended('/admin');
-        // return response()->json([
-        //     "status" => "success",
-        //     "data" => $beach,
-        //     "imageURL" => $linkImages
-        // ]);
-    }
-
-    public function storeAPI()
-    {
+        // return redirect()->intended('/admin');
     }
 
     /**

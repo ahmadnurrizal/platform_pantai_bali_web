@@ -95,7 +95,7 @@
             form.addEventListener('submit', function (event) {
                 let formData = new FormData(this);
                 event.preventDefault();
-                var url = "{{ url('api/beach')}}";
+                var url = "{{ url('api/beachAPI')}}";
                 $.ajax({
                     url: url,
                     headers: {
@@ -106,6 +106,8 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
+                        console.log(response)
+                        // alert(response)
                         alert("Success add beach")
                         window.location.reload();
                     },
