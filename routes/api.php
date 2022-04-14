@@ -32,6 +32,15 @@ Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 Route::get('/beach/get-data', [BeachController::class, 'getData']);
 Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById']);
 
+
+
+
+
+
+
+
+
+
 Route::post('/beach', [BeachController::class, 'store']);
 Route::get('/beach-favorite', [BeachController::class, 'favoriteBeach']);
 Route::post('/beach/{id}', [BeachController::class, 'update']);

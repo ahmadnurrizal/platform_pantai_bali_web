@@ -22,8 +22,8 @@ class BeachController extends Controller
     {
         // dd('kkkk');
         // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
-        $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
-        // $allBeach =  $this->getData();
+        // $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+        $allBeach =  $this->getData();
         // dd($allBeach);
         // $allBeach =  $this->getData();
         // $allBeach = new LengthAwarePaginator(
@@ -50,7 +50,8 @@ class BeachController extends Controller
 
     public function getData()
     {
-        return (Beach::with('images')->get());
+        // dd(Beach::with('images')->get());
+        return Beach::with('images')->get();
     }
 
     function fetch_data(Request $request)
