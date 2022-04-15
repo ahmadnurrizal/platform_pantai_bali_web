@@ -34,3 +34,5 @@ Route::get('/admin/beach/add', function () {
     return view('admin.beach-add');
 });
 Route::get('/admin/beach', [BeachController::class, 'getDataAdmin']);
+
+Route::get('/logout', [AuthController::class, 'logout']);
