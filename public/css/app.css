@@ -1149,6 +1149,9 @@ input[type=file]::file-selector-button:hover {
 .w-10 {
   width: 2.5rem;
 }
+.w-48 {
+  width: 12rem;
+}
 .min-w-0 {
   min-width: 0px;
 }

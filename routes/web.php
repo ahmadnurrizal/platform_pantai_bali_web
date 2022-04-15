@@ -27,6 +27,8 @@ Route::get('/register', [AuthController::class, 'RegisterView']);
 
 Route::get('/beach-detail/{id}', [BeachController::class, 'show']);
 
+Route::get('/admin/beach-edit/{id}', [BeachController::class, 'edit_beach']);
+
 Route::get('/admin', function () {
     return view('admin.index');
 });

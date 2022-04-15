@@ -47,7 +47,7 @@
                                             <!-- <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm"> workcation.com/ </span> -->
                                             <input type="text" name="beach_name" id="beach_name"
                                                 autocomplete="beach_name"
-                                                class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded sm:text-sm border-gray-300">
+                                                class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded sm:text-sm border-gray-300" value="{{ $detailBeach->beach_name }}">
                                         </div>
                                     </div>
                                     <div class="sm:col-span-4">
@@ -57,7 +57,7 @@
                                             <!-- <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm"> workcation.com/ </span> -->
                                             <input type="text" name="beach_location" id="beach_location"
                                                 autocomplete="beach_location"
-                                                class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded sm:text-sm border-gray-300">
+                                                class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded sm:text-sm border-gray-300" value="{{ $detailBeach->beach_location }}">
                                         </div>
                                     </div>
 
@@ -66,11 +66,10 @@
                                             Pantai </label>
                                         <div class="mt-1">
                                             <textarea id="beach_description" name="beach_description" rows="3"
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"></textarea>
+                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md">{{ $detailBeach->beach_description }}</textarea>
                                         </div>
                                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about beach.</p>
-                                    </div>
-
+                                    </div>                                    
                                     <div class="sm:col-span-6">
                                         <label for="photo" class="block text-sm font-medium text-gray-700"> Photo
                                         </label>
@@ -96,17 +95,20 @@
 
                                                 <div id="image_preview"
                                                     style="overflow: hidden; display: flex; justify-content:space-around;">
-
+                                                    @foreach($images as $key =>$image)
+                                                        <img src="{{ $image }}" alt="" width="" class="bg-auto w-48 h-full" referrerpolicy="no-referrer">
+                                                    @endforeach
                                                 </div>
                                                 <p class="text-xs text-gray-500">PNG, JPG, GIF up to 1MB each image</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="pt-5">
                                     <div class="flex justify-end">
                                         <button type="submit"
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
+                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit
                                             Beach</button>
                                     </div>
                                 </div>

@@ -306,4 +306,25 @@ class BeachController extends Controller
             "data" => $beach
         ]);
     }
+
+    public function edit_beach($id)
+    {
+        // dd("kkkkk");
+        $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
+        $reviews = (new ReviewController)->getReview($id);
+        $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
+        // $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
+
+        $images = $beach[1];
+        $reviews = $beach[2];
+        $detailBeach = $beach[0];
+        if (!$beach) {
+            return response()->json([
+                "status" => "error",
+                "message" => "Beach not found"
+            ]);
+        }
+
+        return view('admin.beach-edit', compact('detailBeach', 'totalFavorite', 'reviews', 'images'));
+    }
 }
