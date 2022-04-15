@@ -24,7 +24,7 @@
                         <div class="flex justify-end">
                             <a href="/admin/beach/add" class="rounded text-white bg-blue-600 px-4 py-2 m-4 mr-0">Tambah Pantai</a>
                         </div>
-                        <table id="table_id" class="divide-y divide-gray-200 table-fixed">
+                        <table id="table_id" class="divide-y divide-gray-200 w-full table-auto">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name
@@ -45,13 +45,13 @@
                                     @csrf
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $beach->beach_name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $beach->beach_location }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $beach->beach_description }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
+                                    <td class="px-6 py-4 text-sm text-gray-500 break-all">{{ $beach->beach_description }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3 w-10">
                                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                         <!-- <a href="javascript:void(0)" onClick="delete_data({{ $beach->id }})"
                                         class="text-red-600 hover:text-indigo-900">Delete</a> -->
                                         <!-- <a href="{{route('beach.destroy', [$beach->id])}}" class="text-red-600 hover:text-indigo-900">Delete</a> -->
-                                        <button class="deleteRecord" data-id="{{ $beach->id }}">Delete Record</button>
+                                        <button class="deleteRecord text-red-600 hover:text-indigo-900" data-id="{{ $beach->id }}">Delete</button>
                                     </td>
                                 </tr>
 

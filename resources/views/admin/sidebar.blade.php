@@ -3,7 +3,7 @@
     <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
         <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div class="flex items-center flex-shrink-0 px-4">
-                <p class="font-bold text-black text-3xl italic ">HaloPantai</p>
+                <a href="/" class="font-bold text-black text-3xl italic ">HaloPantai</a>
             </div>
             <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
                 <a href="/admin" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
@@ -29,7 +29,7 @@
                         <img class="inline-block h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                     </div>
                     <div class="ml-3">
-                        <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+                        <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{ Session::get('user')->name }}</p>
                         <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">Logout</p>
                     </div>
                 </div>

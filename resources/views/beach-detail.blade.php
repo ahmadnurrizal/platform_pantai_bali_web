@@ -60,6 +60,9 @@
             </div>
             <div class="hidden" id="review" role="tabpanel" aria-labelledby="review-tab">
                 <div>
+                    @if(empty($reviews))
+                    <p class="text-sm text-gray-500 dark:text-gray-400 flex justify-center">Tidak ada review</p>
+                    @endif
                     @foreach($reviews as $key =>$review)
                     <div id="review" class="flex flex-col py-5 gap-3 w-full border-b-2">
                         <div class="flex justify-start">
