@@ -20,29 +20,29 @@ class AuthController extends Controller
 
     public function registerAPI(Request $request)
     {
-        $fields = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
-            'password' => 'required|string',
-        ]);
+        // $fields = $request->validate([
+        //     'name' => 'required|string',
+        //     'email' => 'required|string|unique:users,email',
+        //     'password' => 'required|string',
+        // ]);
 
         $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password']),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
         // creating token
-        $token = $user->createToken('myapptoken')->plainTextToken;
-
-
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
+        // $token = $user->createToken('myapptoken')->plainTextToken;
+        // $response = [
+        //     'user' => $user,
+        //     'token' => $token
+        // ];
+        return $user;
     }
     public function register(Request $req)
     {
+        // var_dump($req);
         // $response = Http::post('http://127.0.0.1:8001/api/registerAPI', [
         $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
             'name' => $req->name,
