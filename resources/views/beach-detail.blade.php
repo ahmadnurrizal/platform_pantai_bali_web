@@ -38,8 +38,8 @@
                 <button class="rounded text-white bg-cyan-600 px-8 my-1" onclick="toggleModal('modal-id')">Add
                     Review</button>
                 @else
-                <!-- <button class="rounded text-white bg-cyan-600 px-8 my-1" onclick="location.href='/login'">Add
-                    Review</button> -->
+                <button class="rounded text-white bg-cyan-600 px-8 my-1" onclick="location.href='/login'">Add
+                    Review</button>
                 @endif
             </div>
         </div>
