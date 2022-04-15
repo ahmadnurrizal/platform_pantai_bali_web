@@ -43,8 +43,8 @@ class AuthController extends Controller
     }
     public function register(Request $req)
     {
-        $response = Http::post('http://127.0.0.1:8001/api/registerAPI', [
-            // $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+        // $response = Http::post('http://127.0.0.1:8001/api/registerAPI', [
+        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
             'name' => $req->name,
             'email' => $req->email,
             'password' => $req->password,
@@ -91,8 +91,8 @@ class AuthController extends Controller
     public function loginAction(Request $req)
     {
         // $response = $this->login($request);
-        $response = Http::post('http://127.0.0.1:8001/api/login', [
-            // $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+        // $response = Http::post('http://127.0.0.1:8001/api/login', [
+        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
             'email' => $req->email,
             'password' => $req->password,
         ]);

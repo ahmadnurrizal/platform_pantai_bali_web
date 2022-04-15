@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Beach;
 use App\Models\Favorite;
 use App\Models\Image;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +24,7 @@ class BeachController extends Controller
     {
 
         $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        // $allBeach =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
 
         return view('explore', compact('allBeach'));
     }
@@ -29,6 +32,7 @@ class BeachController extends Controller
     public function indexHome()
     {
         $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        // $temp =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
         for ($i = 0; $i < 4; $i++) {
             $allBeach[] = $temp[$i];
         }
@@ -41,6 +45,7 @@ class BeachController extends Controller
     {
         // $beaches = $this->getData();
         $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        // $beaches =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
         // $beaches =  $this->getData();
         return view('admin.beach', compact('beaches'));
     }
@@ -57,6 +62,7 @@ class BeachController extends Controller
         // dd($request->ajax());
         if ($request->ajax()) {
             $temp =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/get-data'));
+            // $temp =  json_decode(Http::get('http://127.0.0.1:8001/api/beach/get-data'));
             $allBeach = new LengthAwarePaginator(
                 $temp->data,
                 $temp->total,
@@ -121,6 +127,7 @@ class BeachController extends Controller
 
 
         $responseBeach = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+            // $responseBeach = Http::post('http://127.0.0.1:8001/api/beach', [
             'beach_name' => $req->beach_name,
             'beach_location' => $req->beach_location,
             'beach_description' => $req->beach_description,
@@ -148,6 +155,7 @@ class BeachController extends Controller
         var_dump($linkImages);
         foreach ($linkImages as $url) {
             $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
+                // $response = Http::post('http://127.0.0.1:8001/api/image', [
                 'url' => $url,
                 'beach_id' => $beach_id
             ]);
@@ -167,8 +175,10 @@ class BeachController extends Controller
         $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
         $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
+        // $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
 
         $images = $beach[1];
+        $reviews = $beach[2];
         $detailBeach = $beach[0];
         if (!$beach) {
             return response()->json([
@@ -184,12 +194,22 @@ class BeachController extends Controller
     {
         $beach = Beach::find($id); // find data by id
         $images = Image::where('beach_id', $id)->get()->toArray();
+        $reviews = Review::where('beach_id', $id)->get()->toArray();
         $imageArray = [];
+        $reviewArray = [];
         foreach ($images as $image) {
             $imageArray[] = $image['url'];
         }
+
+        foreach ($reviews as $review) {
+            $user = User::find($review['user_id']);
+            $reviewArray[] = [
+                'name' => $user->name,
+                'review' => $review['review']
+            ];
+        }
         // dd($imageArray)
-        return [$beach, $imageArray];
+        return [$beach, $imageArray, $reviewArray];
     }
 
     /**
@@ -247,6 +267,7 @@ class BeachController extends Controller
     public function destroyAPI($id)
     {
         $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id));
+        // $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id));
         var_dump($beach);
         if (!$beach[0] == NULL) {
             $apiURL = 'https://review-pantai.herokuapp.com/api/beach/delete/' . $id;

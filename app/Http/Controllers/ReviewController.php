@@ -6,6 +6,7 @@ use App\Models\Review;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
@@ -15,7 +16,7 @@ class ReviewController extends Controller
         return Review::where('beach_id', $id)->get();
     }
 
-    public function store(Request $request)
+    public function storeAPI(Request $request)
     {
         $reviewData = $request->all();
         $validate = Validator::make($reviewData, [
@@ -28,9 +29,15 @@ class ReviewController extends Controller
             ]);
         }
 
+
         try {
+
+            if (Session::has('user')) {
+                $user_id = Session::get('user')->id;
+            }
+            // $user_id = 1;
             $review = Review::create([
-                'user_id' => Auth::user()->id,
+                'user_id' => $user_id,
                 'beach_id' => $request->beach_id,
                 'review' => $request->review
             ]);
