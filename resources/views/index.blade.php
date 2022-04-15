@@ -13,7 +13,8 @@
     <!-- backgrond -->
     <div class="relative -mt-20">
         <div class="static">
-            <img src="{{ asset('storage/asset/index_banner.png') }}" alt="" width="" class="bg-auto w-full brightness-50">
+            <img src="{{ asset('storage/asset/index_banner.png') }}" alt="" width=""
+                class="bg-auto w-full brightness-50">
             <div class="absolute inset-0 ">
                 <div class="flex justify-center h-full">
                     <div class="m-auto">
@@ -32,12 +33,16 @@
                 <div class="grid grid-cols-6 items-center mx-10">
                     <div class="col-span-4">
                         <div class="relative">
-                            <input type="text" class="rounded border-none bg-gray-100 w-full px-3 py-3" placeholder="Search...">
+                            <input type="text" class="rounded border-none bg-gray-100 w-full px-3 py-3"
+                                placeholder="Search...">
                             <div class="absolute top-0 -right-1 flex items-center h-full pr-1">
                                 <a href="">
                                     <div class="bg-cyan-600 rounded-r-lg w-14 flex justify-center">
-                                        <svg class="h-12 w-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                        <svg class="h-12 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                                clip-rule="evenodd" />
                                         </svg>
                                     </div>
                                 </a>
@@ -86,13 +91,15 @@
         <p class="font-medium text-2xl">Explore the best</p>
         <div class="relative flex justify-between">
             <p class="font-normal text-base text-gray-400 justify-start">Best of bali beach based on review</p>
-            <a href="/explore" class="font-normal text-base text-green-500 justify-end hover:text-green-800">Explore all >></a>
+            <a href="/explore" class="font-normal text-base text-green-500 justify-end hover:text-green-800">Explore all
+                >></a>
         </div>
         <div class="flex justify-around items-center py-12 px-5 mx-14">
             @foreach ($allBeach as $beach )
             <a href="/beach-detail/{{ $beach->id }}" class="bg-white overflow-hidden rounded-lg w-full">
                 <div class="px-4 py-3 hover:brightness-75 ease-in-out duration-300">
-                    <img src="{{ $beach->images[0]->url }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ $beach->images[0]->url }}" alt="" width="" class="bg-auto w-full"
+                        referrerpolicy="no-referrer">
                 </div>
                 <div class="px-4 sm:px-6 grid gap-1">
                     <p class="text-black font-medium text-lg">{{ $beach->beach_name }}</p>
@@ -107,4 +114,3 @@
 </body>
 
 </html>
-

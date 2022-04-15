@@ -91,8 +91,8 @@
                                                     <p class="pl-1">or drag and drop</p> -->
                                                 </div>
                                                 <input type="file" onchange="preview_image();"
-                                                    class="form-control relative cursor-pointer" required
-                                                    name="images[]" id="image" multiple>
+                                                    class="form-control relative cursor-pointer" name="images[]"
+                                                    id="image" multiple>
 
                                                 <div id="image_preview"
                                                     style="overflow: hidden; display: flex; justify-content:space-around;">

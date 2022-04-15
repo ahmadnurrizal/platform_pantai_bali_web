@@ -138,7 +138,15 @@ class BeachController extends Controller
             'beach_location' => $req->beach_location,
             'beach_description' => $req->beach_description,
         ]);
+        // var_dump($req);
+
+        // $responseBeach = Http::asForm()->post('https://review-pantai.herokuapp.com/api/beach', [
+        //     'beach_name' => $req->beach_name,
+        //     'beach_location' => $req->beach_location,
+        //     'beach_description' => $req->beach_description,
+        // ]);
         $beach_id = (json_decode($responseBeach->body())->id);
+        // var_dump($beach_id);
         // $beach_id = (json_decode($responseBeach->body())->data->id);
         $files = $req->file('images');
         $linkImages = array();
@@ -157,7 +165,7 @@ class BeachController extends Controller
             $linkImage = json_decode($response->getBody())->data->link;
             array_push($linkImages,  $linkImage);
         }
-        var_dump($beach_id);
+        var_dump($linkImages);
         foreach ($linkImages as $url) {
             $response = Http::post('https://review-pantai.herokuapp.com/api/image', [
                 'url' => $url,

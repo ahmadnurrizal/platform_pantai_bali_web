@@ -14,12 +14,12 @@
         <div class="flex flex-row">
             <div class="grid grid-cols-5 gap-2">
                 <div class="col-span-3">
-                    <img src="{{ $images[0] }}" alt="" width="" class="bg-auto w-full">
+                    <img src="{{ $images[0] }}" alt="" width="" class="bg-auto w-full" referrerpolicy="no-referrer">
                 </div>
                 <div class="grid grid-cols-2 grid-rows-2 col-span-2 gap-2">
                     @foreach($images as $key =>$image)
                     @if(!$key==0)
-                    <img src="{{ $image}}" alt="" width="" class="bg-auto w-full h-full">
+                    <img src="{{ $image }}" alt="" width="" class="bg-auto w-full h-full" referrerpolicy="no-referrer">
                     @endif
                     @endforeach
                 </div>
