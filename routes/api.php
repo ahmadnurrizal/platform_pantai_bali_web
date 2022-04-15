@@ -22,9 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 //  PUBLIC ROUTE
 Route::post('/register', [AuthController::class, 'register']); // register
+Route::post('/registerAPI', [AuthController::class, 'registerAPI']); // register
 Route::post('/login', [AuthController::class, 'login']); // login
 
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'getUser']);
 Route::get('/beach', [BeachController::class, 'index']);
 Route::get('/beach/{id}', [BeachController::class, 'show']);
 Route::get('/beach/search/{beach}', [BeachController::class, 'search']);

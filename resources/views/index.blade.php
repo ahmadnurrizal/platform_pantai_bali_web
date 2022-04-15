@@ -14,7 +14,7 @@
     <div class="relative -mt-20">
         <div class="static">
             <img src="{{ asset('storage/asset/index_banner.png') }}" alt="" width=""
-                class="bg-auto w-full brightness-50">
+                class="bg-auto w-full brightness-50" referrerpolicy="no-referrer">
             <div class="absolute inset-0 ">
                 <div class="flex justify-center h-full">
                     <div class="m-auto">

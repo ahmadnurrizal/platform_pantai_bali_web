@@ -20,22 +20,9 @@ class BeachController extends Controller
      */
     public function index()
     {
-        // dd('kkkk');
-        // $allBeach =  Http::get(env('APP_DOMAIN') . '/api/beach/get-data');
+
         $allBeach =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
-        // $allBeach =  $this->getData();
-        // dd($allBeach);
-        // $allBeach =  $this->getData();
-        // $allBeach = new LengthAwarePaginator(
-        //     $temp->data,
-        //     $temp->total,
-        //     $temp->per_page,
-        //     $temp->current_page,
-        //     ['path' => '/explore/fetch_data']
-        // );
-        // dd($allBeach[0]->images[1]->url);
-        // dd($allBeach[0]->image[1]->url);
-        // dd($allBeach);
+
         return view('explore', compact('allBeach'));
     }
 
@@ -131,23 +118,16 @@ class BeachController extends Controller
 
     public function storeAPI(Request $req)
     {
-        // insert data to beach table
+
 
         $responseBeach = Http::post('https://review-pantai.herokuapp.com/api/beach', [
             'beach_name' => $req->beach_name,
             'beach_location' => $req->beach_location,
             'beach_description' => $req->beach_description,
         ]);
-        // var_dump($req);
 
-        // $responseBeach = Http::asForm()->post('https://review-pantai.herokuapp.com/api/beach', [
-        //     'beach_name' => $req->beach_name,
-        //     'beach_location' => $req->beach_location,
-        //     'beach_description' => $req->beach_description,
-        // ]);
         $beach_id = (json_decode($responseBeach->body())->id);
-        // var_dump($beach_id);
-        // $beach_id = (json_decode($responseBeach->body())->data->id);
+
         $files = $req->file('images');
         $linkImages = array();
         foreach ($files as $imagefile) {
@@ -187,8 +167,7 @@ class BeachController extends Controller
         $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
         $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
-        // $beach = $this->getbeachById($id);
-        // dd($beach);
+
         $images = $beach[1];
         $detailBeach = $beach[0];
         if (!$beach) {
@@ -229,16 +208,6 @@ class BeachController extends Controller
                 "message" => "beach not found"
             ]);
         }
-
-        // $user = auth()->user();
-        // $data = $request->all();
-
-        // if ($beach->user_id != $user->id) { // check user can update beach or not (only user which create the beach can update)
-        //     return response()->json([
-        //         "status" => "error",
-        //         "message" => "user can't update beach"
-        //     ]);
-        // }
 
         $beach->update($request->all()); // update  data
 
@@ -300,8 +269,6 @@ class BeachController extends Controller
 
     public function search($beach_name)
     {
-        // $beach = Beach::where('beach_name', 'like', '%' . $beach_name . '%')
-        //     ->where('status', 'public')->get(); // search data by title
         $beach = Beach::select("beach_name")
             ->where(DB::raw('lower(beach_name)'), 'like', '%' . strtolower($beach_name) . '%')
             ->get();

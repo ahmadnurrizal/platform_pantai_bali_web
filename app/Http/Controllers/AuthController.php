@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Http;
+
 // use Symfony\Component\HttpFoundation\JsonResponse
 
 class AuthController extends Controller
@@ -16,12 +18,12 @@ class AuthController extends Controller
         'Content-Type' => 'application/json'
     ];
 
-    public function register(Request $request)
+    public function registerAPI(Request $request)
     {
         $fields = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string',
         ]);
 
         $user = User::create([
@@ -33,12 +35,23 @@ class AuthController extends Controller
         // creating token
         $token = $user->createToken('myapptoken')->plainTextToken;
 
+
         $response = [
             'user' => $user,
             'token' => $token
         ];
+    }
+    public function register(Request $req)
+    {
+        $response = Http::post('http://127.0.0.1:8001/api/registerAPI', [
+            // $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => $req->password,
+        ]);
 
-        return response($response, 201);
+        $req->session()->flash('success', 'Registration Successfull!! Please Login');
+        return redirect()->intended('/login');
     }
 
     public function login(Request $request)
@@ -56,6 +69,7 @@ class AuthController extends Controller
         // check password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
+                "success" => false,
                 'message' => 'Bed Creds'
             ], 401);
         }
@@ -74,17 +88,24 @@ class AuthController extends Controller
         ], 200, $this->headers);
     }
 
-    public function loginAction(Request $request)
+    public function loginAction(Request $req)
     {
-        $response = $this->login($request);
+        // $response = $this->login($request);
+        $response = Http::post('http://127.0.0.1:8001/api/login', [
+            // $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+            'email' => $req->email,
+            'password' => $req->password,
+        ]);
         // dd($response->content());
-        dd(json_decode($response->content()));
-        if (json_decode($response->content())->success) {
-            $data = json_decode($response->content())->data;
+        if (json_decode($response->body())->success) {
+            $data = json_decode($response->body())->data;
             Session::put('token', $data->token);
             Session::put('user', $data->user);
+            return redirect()->intended('/');
+        } else {
+            $req->session()->flash('fail_login', 'Please enter correct email/password');
+            return back();
         }
-        return redirect()->intended('/');
     }
 
     public function logout()
