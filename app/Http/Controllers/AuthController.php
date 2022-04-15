@@ -44,7 +44,7 @@ class AuthController extends Controller
     {
         // var_dump($req);
         // $response = Http::post('http://127.0.0.1:8001/api/registerAPI', [
-        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+        $response = Http::post('https://review-pantai.herokuapp.com/api/registerAPI', [
             'name' => $req->name,
             'email' => $req->email,
             'password' => $req->password,
