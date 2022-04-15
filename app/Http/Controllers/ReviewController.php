@@ -6,6 +6,7 @@ use App\Models\Review;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,13 +32,9 @@ class ReviewController extends Controller
 
 
         try {
-
-            if (Session::has('user')) {
-                $user_id = Session::get('user')->id;
-            }
             // $user_id = 1;
             $review = Review::create([
-                'user_id' => $user_id,
+                'user_id' => $request->user_id,
                 'beach_id' => $request->beach_id,
                 'review' => $request->review
             ]);
@@ -50,6 +47,23 @@ class ReviewController extends Controller
             "message" => "Successfuly Add review!",
             "data" => $review
         ]);
+    }
+
+    public function store(Request $req)
+    {
+        if (Session::has('user')) {
+            $user_id = Session::get('user')->id;
+        }
+
+        // $response = Http::post('http://127.0.0.1:8001/api/storeAPI', [
+        $response = Http::post('https://review-pantai.herokuapp.com/api/storeAPI', [
+            'user_id' =>  $user_id,
+            'beach_id' => $req->beach_id,
+            'review' => $req->review,
+        ]);
+
+
+        return  $response;
     }
 
 

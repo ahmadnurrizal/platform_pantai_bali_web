@@ -78,6 +78,7 @@
                         // alert(response)
                         alert("Success register")
                         // window.location.reload();
+                        location.replace("http://127.0.0.1:8000/login")
                     },
                     error: function (xhr) {
                         console.log(xhr.responseText);

@@ -42,6 +42,8 @@ class AuthController extends Controller
     }
     public function register(Request $req)
     {
+        // $req->session()->flash('success', 'Registration Successfull!! Please Login');
+        $req->session()->put('success', 'Registration Successfull!! Please Login');
         // var_dump($req);
         // $response = Http::post('http://127.0.0.1:8001/api/registerAPI', [
         $response = Http::post('https://review-pantai.herokuapp.com/api/registerAPI', [
@@ -50,9 +52,10 @@ class AuthController extends Controller
             'password' => $req->password,
         ]);
 
-        $req->session()->flash('success', 'Registration Successfull!! Please Login');
+
         return redirect()->intended('/login');
     }
+
 
     public function login(Request $request)
     {
@@ -92,7 +95,7 @@ class AuthController extends Controller
     {
         // $response = $this->login($request);
         // $response = Http::post('http://127.0.0.1:8001/api/login', [
-        $response = Http::post('https://review-pantai.herokuapp.com/api/beach', [
+        $response = Http::post('https://review-pantai.herokuapp.com/api/login', [
             'email' => $req->email,
             'password' => $req->password,
         ]);

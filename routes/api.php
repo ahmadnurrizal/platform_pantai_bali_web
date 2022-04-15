@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']); // register
 Route::post('/registerAPI', [AuthController::class, 'registerAPI']); // register
 Route::post('/login', [AuthController::class, 'login']); // login
+Route::post('/loginAPI', [AuthController::class, 'loginAPI']); // login
 
 Route::get('/users', [UserController::class, 'getUser']);
 Route::get('/beach', [BeachController::class, 'index']);
@@ -33,7 +34,8 @@ Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 Route::get('/get-data-beach', [BeachController::class, 'getData']);
 Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById']);
 
-Route::post('/review-beach', [ReviewController::class, 'storeAPI']);
+Route::post('/review-beach', [ReviewController::class, 'store']);
+Route::post('/storeAPI', [ReviewController::class, 'storeAPI']);
 // Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById']);
 
 
