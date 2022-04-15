@@ -33,6 +33,9 @@ Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 Route::get('/get-data-beach', [BeachController::class, 'getData']);
 Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById']);
 
+Route::post('/review-beach', [ReviewController::class, 'storeAPI']);
+// Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById']);
+
 
 
 
