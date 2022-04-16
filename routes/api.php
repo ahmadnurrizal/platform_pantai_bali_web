@@ -33,6 +33,8 @@ Route::get('/beach/search/{beach}', [BeachController::class, 'search']);
 
 Route::get('/get-data-beach', [BeachController::class, 'getData']);
 Route::get('/beach/beach-detail/{id}', [BeachController::class, 'getbeachById']);
+Route::post('/beach/update/{id}', [BeachController::class, 'update']);
+Route::post('/beach/updateAPI', [BeachController::class, 'updateAPI']);
 
 Route::post('/review-beach', [ReviewController::class, 'store']);
 Route::post('/storeAPI', [ReviewController::class, 'storeAPI']);
