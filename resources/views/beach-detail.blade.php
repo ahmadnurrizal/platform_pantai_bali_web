@@ -34,8 +34,13 @@
                     <p class="text-xl text-black font-bold">{{ $detailBeach->beach_name }}</p>
                     <p class="text-sm text-gray-500 font-normal">{{ $detailBeach->beach_location }} </p>
                 </div>
+                @if(Session::has('user'))
                 <button class="rounded text-white bg-cyan-600 px-8 my-1" onclick="toggleModal('modal-id')">Add
                     Review</button>
+                @else
+                <button class="rounded text-white bg-cyan-600 px-8 my-1" onclick="location.href='/login'">Add
+                    Review</button>
+                @endif
             </div>
         </div>
         <div class="mb-4 border-b border-gray-200">
@@ -112,7 +117,7 @@
                         <!--footer-->
                         <div class="flex items-center justify-end p-6 rounded-b">
                             <button class="rounded text-white bg-cyan-600 px-8 h-10">Add Review</button>
-                        </div>
+                        </div>                        
                     </form>
 
                 </div>

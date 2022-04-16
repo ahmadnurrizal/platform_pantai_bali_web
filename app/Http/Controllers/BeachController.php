@@ -44,8 +44,8 @@ class BeachController extends Controller
     public function getDataAdmin()
     {
         // $beaches = $this->getData();
-        $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
-        // $beaches =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
+        // $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        $beaches =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
         // $beaches =  $this->getData();
         return view('admin.beach', compact('beaches'));
     }
@@ -212,28 +212,35 @@ class BeachController extends Controller
         return [$beach, $imageArray, $reviewArray];
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Beach  $beach
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $beach = Beach::find($id);
-        if (!$beach) {
-            return response()->json([
-                "status" => "error",
-                "message" => "beach not found"
-            ]);
-        }
 
-        $beach->update($request->all()); // update  data
+    public function updateAPI(Request $req)
+    {
+        $beach = Beach::with('images')->where('id', $req->id)->first();
+
+
+        $beachUpdate = $beach->update([
+            'beach_name' => $req->beach_name,
+            'beach_location' => $req->beach_location,
+            'beach_description' => $req->beach_description,
+        ]);
+
+        return $beach;
+    }
+
+
+    public function update(Request $req, $id)
+    {
+
+        // $response = Http::post('https://review-pantai.herokuapp.com/api/beach/update/' . $id, [
+        $response = Http::post('http://127.0.0.1:8001/api/beach/updateAPI', [
+            'id' => $id,
+            'beach_name' => $req->beach_name,
+            'beach_location' => $req->beach_location,
+            'beach_description' => $req->beach_description,
+        ]);
 
         return response()->json([
             "status" => "success",
-            "data" => $beach
         ]);
     }
 
@@ -305,5 +312,27 @@ class BeachController extends Controller
             "status" => "success",
             "data" => $beach
         ]);
+    }
+
+    public function edit_beach($id)
+    {
+        // dd("kkkkk");
+
+        $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
+        $reviews = (new ReviewController)->getReview($id);
+        // $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
+        $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
+
+        $images = $beach[1];
+        $reviews = $beach[2];
+        $detailBeach = $beach[0];
+        if (!$beach) {
+            return response()->json([
+                "status" => "error",
+                "message" => "Beach not found"
+            ]);
+        }
+        // var_dump($detailBeach);
+        return view('admin.beach-edit', compact('detailBeach', 'totalFavorite', 'reviews', 'images'));
     }
 }

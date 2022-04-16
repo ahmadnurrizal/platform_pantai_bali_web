@@ -113,8 +113,13 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->user()->tokens()->delete(); // Delete token (code is good, ignore error)
-        return response(['message' => 'logged out']);
+        // auth()->user()->tokens()->delete(); // Delete token (code is good, ignore error)
+        Session::flush();
+        
+        Auth::logout();
+
+        // return response(['message' => 'logged out']);
+        return redirect('/')->with('logout','logged out');
     }
 
     public function loginView(Request $request)

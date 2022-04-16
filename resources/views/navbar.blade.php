@@ -17,12 +17,12 @@
         @if(str_contains(url()->current(), '/beach-detail'))
         <div class="flex items-center justify-end space-x-12">
             <p class="font-normal text-gray-800">{{ Session::get('user')->name }}</p>
-            <a href="" class="font-normal text-gray-600 hover:text-blue-400">Logout</a>
+            <a href="/logout" class="font-normal text-gray-600 hover:text-blue-400">Logout</a>
         </div>
         @else
         <div class="flex items-center justify-end space-x-12">
             <p class="font-normal text-white">{{ Session::get('user')->name }}</p>
-            <a href="" class="font-normal text-white hover:text-blue-400">Logout</a>
+            <a href="/logout" class="font-normal text-white hover:text-blue-400">Logout</a>
         </div>
         @endif
     @else

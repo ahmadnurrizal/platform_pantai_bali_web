@@ -8,6 +8,15 @@
 </head>
 
 <body>
+    @if(Session::has('logout'))
+    <script>
+    var msg = '{{Session::get('logout')}}';
+    var exist = '{{Session::has('logout')}}';
+    if(exist){
+      alert(msg);
+    }
+    </script>
+    @endif
     <!-- navbar -->
     @include('navbar')
     <!-- backgrond -->

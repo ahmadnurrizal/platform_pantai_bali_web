@@ -145,7 +145,8 @@
                         console.log(response)
                         // alert(response)
                         alert("Success add beach")
-                        window.location.reload();
+                        // window.location.reload();
+                        location.replace("http://127.0.0.1:8000/admin/beach")
                     },
                     error: function (xhr) {
                         console.log(xhr.responseText);
