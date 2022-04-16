@@ -44,8 +44,8 @@ class BeachController extends Controller
     public function getDataAdmin()
     {
         // $beaches = $this->getData();
-        // $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
-        $beaches =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
+        $beaches =  json_decode(Http::get('https://review-pantai.herokuapp.com/api/get-data-beach'));
+        // $beaches =  json_decode(Http::get('http://127.0.0.1:8001/api/get-data-beach'));
         // $beaches =  $this->getData();
         return view('admin.beach', compact('beaches'));
     }
@@ -232,7 +232,7 @@ class BeachController extends Controller
     {
 
         // $response = Http::post('https://review-pantai.herokuapp.com/api/beach/update/' . $id, [
-        $response = Http::post('http://127.0.0.1:8001/api/beach/updateAPI', [
+        $response = Http::post('https://review-pantai.herokuapp.com/api/beach/updateAPI', [
             'id' => $id,
             'beach_name' => $req->beach_name,
             'beach_location' => $req->beach_location,
@@ -320,8 +320,8 @@ class BeachController extends Controller
 
         $totalFavorite = (new FavoriteController)->countBeachFavorite($id);
         $reviews = (new ReviewController)->getReview($id);
-        // $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
-        $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
+        $beach = json_decode(Http::get('https://review-pantai.herokuapp.com/api/beach/beach-detail/' . $id . ''));
+        // $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
 
         $images = $beach[1];
         $reviews = $beach[2];
