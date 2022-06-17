@@ -77,3 +77,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy']);
     // Route::post('/review', [ReviewController::class, 'store']);
 });
+
+
+Route::get('/beach/detail/{beach_id}', [ReviewController::class, 'getBeachDetail']);

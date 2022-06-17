@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beach;
 use App\Models\Review;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,22 +18,15 @@ class ReviewController extends Controller
         return Review::where('beach_id', $id)->get();
     }
 
-    // public function getReviewAPI($id)
-    // {
-    //     $reviews = json_decode(Http::get('https://review-pantai.herokuapp.com/api/review-beach/' . $id . ''));
-    //     // $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
-
-    //     if (!$reviews) {
-    //         return response()->json([
-    //             "status" => "error",
-    //             "message" => "Beach not found"
-    //         ]);
-    //     }
-    //     return response()->json([
-    //         "status" => "success",
-    //         "data" => $reviews
-    //     ]);
-    // }
+    public function getBeachDetail($id)
+    {
+        $reviews = Review::leftjoin('users', 'reviews.user_id', '=', 'users.id')->where('beach_id', $id)->select('reviews.id', 'reviews.review', 'users.name')->get();
+        $beach = Beach::where('id', $id)->first();
+        return response()->json([
+            'beach' => $beach,
+            'reviews' => $reviews,
+        ]);
+    }
 
     public function storeAPI(Request $request)
     {
