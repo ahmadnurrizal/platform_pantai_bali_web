@@ -17,6 +17,23 @@ class ReviewController extends Controller
         return Review::where('beach_id', $id)->get();
     }
 
+    public function getReviewAPI($id)
+    {
+        $reviews = json_decode(Http::get('https://review-pantai.herokuapp.com/api/review-beach/' . $id . ''));
+        // $beach = json_decode(Http::get('http://127.0.0.1:8001/api/beach/beach-detail/' . $id . ''));
+
+        if (!$reviews) {
+            return response()->json([
+                "status" => "error",
+                "message" => "Beach not found"
+            ]);
+        }
+        return response()->json([
+            "status" => "success",
+            "data" => $reviews
+        ]);
+    }
+
     public function storeAPI(Request $request)
     {
         $reviewData = $request->all();
