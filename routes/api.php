@@ -62,6 +62,7 @@ Route::delete('/logout', [AuthController::class, 'logout']);
 Route::post('/favorite', [FavoriteController::class, 'store']);
 Route::delete('/favorite/{id}', [FavoriteController::class, 'destroy']);
 Route::post('/review', [ReviewController::class, 'store']);
+Route::get('/review-beach/{beach_id}', [ReviewController::class, 'getReview']);
 
 //  PROTECTED ROUTE
 Route::group(['middleware' => ['auth:sanctum']], function () {
